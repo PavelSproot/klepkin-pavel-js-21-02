@@ -48,7 +48,7 @@ html, body {
     width: 100%;
 }
 
-.fish-menu_seafish {
+.fish-menu__seafish {
     padding-bottom: 10px;
 }
 
@@ -144,7 +144,7 @@ a:hover.popular-items__ref {
 }
 
 @media (max-width: 519px) {
-    .leftmenu {
+    .fish-menu {
         display: none;
     }
 }
