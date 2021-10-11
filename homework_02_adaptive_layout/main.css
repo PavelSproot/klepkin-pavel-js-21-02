@@ -8,7 +8,7 @@ html, body {
     padding: 0;
 }
 
-div.totalcont {
+.totalcont {
     display: flex;
     width: 90%;
     height: 100%;
@@ -28,7 +28,14 @@ div.totalcont {
     min-width: 800px;
 }
 
-.leftmenu {
+.maincont {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 100%;
+}
+
+.fish-menu {
     background-color: #f5f5f5;
     width: 240px;
     display: block;
@@ -37,18 +44,11 @@ div.totalcont {
     max-width: 240px;
 }
 
-.maincont {
-    display: flex;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 100%;
-}
-
 .workcont {
     width: 100%;
 }
 
-.seafishcont {
+.fish-menu_seafish {
     padding-bottom: 10px;
 }
 
@@ -58,24 +58,24 @@ div.totalcont {
     height: 40px;
 }
 
-.listcont {
+.reclam-list {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.fishcont {
+.reclam-list__block {
     background-color: #f5f5f5;
     padding: 10px;
     margin: 10px;
 }
 
-.favnamecont {
+.popular-items__name {
     padding-left: 20px;
 }
 
-.itemscont {
+.popular-items__cards {
     display: flex;
     margin-top:20px;
     flex-direction: row;
@@ -83,21 +83,21 @@ div.totalcont {
     justify-content: space-between;
 }
 
-article.itemc {
+.popular-items__item-card {
     background-color: #f5f5f5;
     width: 200px;
     display: flex;
     margin: 10px;
 }
 
-.pictc {
+.popular-items__pict {
     background-color: lightgray;
     width: 60px;
     height: 60px;
     margin: 10px;
 }
 
-.itemdescrc {
+.popular-items__itemdescr {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -105,7 +105,7 @@ article.itemc {
     margin-top: 10px;
 }
 
-.itembutc {
+.popular-items__itembut {
     background-color: lightgray;
     width: 70px;
     height: 30px;
@@ -122,22 +122,22 @@ article.itemc {
     flex: 0 0 auto;
 }
 
-a:link.menuref {
+a:link.popular-items__ref {
     color: black;
     text-decoration: none;
 }
 
-a:visited.menuref {
+a:visited.popular-items__ref {
     color: black;
     text-decoration: none;
 }
 
-a:focus.menuref {
+a:focus.popular-items__ref {
     color: black;
     text-decoration: none;
 }
 
-a:hover.menuref {
+a:hover.popular-items__ref {
     color: blue;
     text-decoration: underline;
 }
@@ -146,4 +146,36 @@ a:hover.menuref {
     .leftmenu {
         display: none;
     }
+}
+
+.popular-items__item-card_theme-dark {
+    background-color: darkgray;
+}
+
+.popular-items__item-card_theme-light {
+    background-color: lightgray;
+}
+
+.fish-menu_theme-dark {
+    background-color: darkgray;
+}
+
+.fish-menu_theme-light {
+    background-color: lightgray;
+}
+
+.reclam-list__block_theme-dark {
+    background-color: darkgray;
+}
+
+.reclam-list__block_theme-light {
+    background-color: lightgray;
+}
+
+.footer_theme-dark {
+    background-color: darkgray;
+}
+
+.footer_theme-light {
+    background-color: lightgray;
 }
