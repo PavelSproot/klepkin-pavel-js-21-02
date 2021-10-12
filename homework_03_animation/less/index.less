@@ -190,5 +190,100 @@ html, body {
   }
 }
 
+.loader {
+  @baseSize: 5px;
+  @scaleMult: 8;
+  @totalHeight: @baseSize * 6 * @scaleMult;
+  @totalWidth: @baseSize * 6 * @scaleMult;
+  @largeSize: @baseSize * 2 * @scaleMult;
+  @minSize: @baseSize * @scaleMult;
+  @color: blue;
+  @speed: 1.5s;
+  @padding: (@largeSize - @minSize) / -2;
+
+  position: relative;
+  display: flex;
+  width: @totalWidth;
+  height: @totalHeight;
+  margin: @baseSize;
+  border: 1px solid black;
+  color: white;
+
+  & div {
+    display: flex;
+    position: absolute;
+    background-color: @color;
+    border-radius: 50%;
+    width: @minSize;
+    height: @minSize;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__circle1 {
+    top: calc(@largeSize / 2 - @minSize / 2);
+    left: calc(@totalWidth / 2 - @minSize / 2);
+    animation: @speed ease-in-out 0s infinite inlarge1;
+    @keyframes inlarge1 {
+      0%, 12.5%, 100% {
+        width: @minSize;
+        height: @minSize;
+        top: calc(@largeSize / 2 - @minSize / 2);
+        left: calc(@totalWidth / 2 - @minSize / 2);
+      }
+      6.25% {
+        width: @largeSize;
+        height: @largeSize;
+        top: 0;
+        left: calc(@totalWidth / 2 - @largeSize / 2);
+      }
+    }
+  }
+  &__circle2 {
+    top: calc(@totalHeight / 2 - round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+    left: calc(@totalWidth / 2 + round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+    animation: @speed ease-in-out 0s infinite inlarge2;
+    @keyframes inlarge2 {
+      0%, 12.5%, 25%, 100% {
+        width: @minSize;
+        height: @minSize;
+        top: calc(@totalHeight / 2 - round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+        left: calc(@totalWidth / 2 + round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+      }
+      18.75% {
+        width: @largeSize;
+        height: @largeSize;
+        top: calc(@totalHeight / 2 - round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @largeSize / 2);
+        left: calc(@totalWidth / 2 + round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @largeSize / 2);
+      }
+    }
+  }
+  &__circle3 {
+    top: calc(@totalHeight / 2 - @minSize / 2);
+    left: calc(@totalWidth - @minSize - @largeSize / 2 + @minSize / 2);
+  }
+  &__circle4 {
+    top: calc(@totalHeight / 2 + round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+    left: calc(@totalWidth / 2 + round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+  }
+  &__circle5 {
+    top: calc(@totalHeight - @largeSize / 2 - @minSize / 2);
+    left: calc(@totalWidth / 2 - @minSize / 2);
+  }
+  &__circle6 {
+    top: calc(@totalHeight / 2 + round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+    left: calc(@totalWidth / 2 - round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+  }
+  &__circle7 {
+    top: calc(@totalHeight / 2 - @minSize / 2);
+    left: calc(@largeSize / 2 - @minSize / 2);
+  }
+  &__circle8 {
+    top: calc(@totalHeight / 2 - round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+    left: calc(@totalWidth / 2 - round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+  }
+
+}
+
 
 
