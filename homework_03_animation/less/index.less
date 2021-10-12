@@ -1,0 +1,194 @@
+@lightThemeBGColor: #f5f5f5;
+@darkThemeBGColor: darkgray;
+@hoverCardColor: olive;
+
+html, body {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.totalcont {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  min-width: 820px;
+}
+
+.header {
+  background-color: green;
+  color: white;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  min-width: 820px;
+}
+
+.maincont {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+}
+
+.workcont {
+  width: 100%;
+}
+
+.descrcont {
+  padding-left: 20px;
+  margin-top: 10px;
+  height: 40px;
+}
+
+
+.fish-menu {
+  background-color: @lightThemeBGColor;
+  width: 240px;
+  display: block;
+  padding: 10px;
+  min-width: 240px;
+  max-width: 240px;
+  &__seafish {
+    padding-bottom: 10px;
+  }
+  &_theme-dark {
+    background-color: @darkThemeBGColor;
+  }
+
+  &_theme-light {
+    background-color: @lightThemeBGColor;
+  }
+  @media (max-width: 519px) {
+    display: none;
+  }
+}
+
+
+.reclam-list {
+  display: grid;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  grid-template-columns: [col1] 1fr [col2] 1fr [col3];
+  &__block {
+    background-color: @lightThemeBGColor;
+    padding: 10px;
+    margin: 10px;
+  }
+  &__block_theme-dark {
+    background-color: @darkThemeBGColor;
+  }
+
+  &__block_theme-light {
+    background-color: @lightThemeBGColor;
+  }
+}
+
+
+
+.popular-items {
+  &__name {
+    padding-left: 20px;
+  }
+  &__cards {
+    display: flex;
+    margin-top:20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  &__item-card {
+    background-color: @lightThemeBGColor;
+    width: 200px;
+    display: flex;
+    margin: 10px;
+  }
+  &__item-card:hover {
+    animation-name: changeColor;
+    animation-duration: 3s;
+
+    @keyframes changeColor {
+      0% {
+        background-color: @darkThemeBGColor;
+      }
+      100% {
+        background-color: @hoverCardColor;
+      }
+    }
+  }
+  &__pict {
+    background-color: lightgray;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+  }
+  &__itemdescr {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  &__itembut {
+    background-color: lightgray;
+    width: 70px;
+    height: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  &__ref:link {
+    color: black;
+    text-decoration: none;
+  }
+
+  &__ref:visited {
+    color: black;
+    text-decoration: none;
+  }
+  &__ref:focus {
+    color: black;
+    text-decoration: none;
+  }
+  &__ref:hover {
+    color: blue;
+    text-decoration: underline;
+  }
+
+  &__item-card_theme-dark {
+    background-color: @darkThemeBGColor;
+  }
+
+  &__item-card_theme-light {
+    background-color: @lightThemeBGColor;
+  }
+
+
+}
+
+.footer {
+  background-color: @lightThemeBGColor;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  flex: 0 0 auto;
+  &_theme-dark {
+    background-color: @darkThemeBGColor;
+  }
+
+  &_theme-light {
+    background-color: @lightThemeBGColor;
+  }
+}
+
+
+
