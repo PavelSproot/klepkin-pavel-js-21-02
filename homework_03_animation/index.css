@@ -24,6 +24,7 @@ body {
   align-items: center;
   padding-left: 10px;
   min-width: 820px;
+  justify-content: space-between;
 }
 .maincont {
   display: flex;
@@ -166,10 +167,9 @@ body {
 .loader {
   position: relative;
   display: flex;
-  width: 240px;
-  height: 240px;
+  width: 60px;
+  height: 60px;
   margin: 5px;
-  border: 1px solid black;
   color: white;
 }
 .loader div {
@@ -177,35 +177,35 @@ body {
   position: absolute;
   background-color: blue;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 10px;
+  height: 10px;
   justify-content: center;
   align-items: center;
 }
 .loader__circle1 {
-  top: calc(80px / 2 - 40px / 2);
-  left: calc(240px / 2 - 40px / 2);
+  top: calc(20px / 2 - 10px / 2);
+  left: calc(60px / 2 - 10px / 2);
   animation: 1.5s ease-in-out 0s infinite inlarge1;
 }
 @keyframes inlarge1 {
   0%,
   12.5%,
   100% {
-    width: 40px;
-    height: 40px;
-    top: calc(80px / 2 - 40px / 2);
-    left: calc(240px / 2 - 40px / 2);
+    width: 10px;
+    height: 10px;
+    top: calc(20px / 2 - 10px / 2);
+    left: calc(60px / 2 - 10px / 2);
   }
   6.25% {
-    width: 80px;
-    height: 80px;
+    width: 20px;
+    height: 20px;
     top: 0;
-    left: calc(240px / 2 - 80px / 2);
+    left: calc(60px / 2 - 20px / 2);
   }
 }
 .loader__circle2 {
-  top: calc(240px / 2 - 57px - 40px / 2);
-  left: calc(240px / 2 + 57px - 40px / 2);
+  top: calc(60px / 2 - 14px - 10px / 2);
+  left: calc(60px / 2 + 14px - 10px / 2);
   animation: 1.5s ease-in-out 0s infinite inlarge2;
 }
 @keyframes inlarge2 {
@@ -213,39 +213,146 @@ body {
   12.5%,
   25%,
   100% {
-    width: 40px;
-    height: 40px;
-    top: calc(240px / 2 - 57px - 40px / 2);
-    left: calc(240px / 2 + 57px - 40px / 2);
+    width: 10px;
+    height: 10px;
+    top: calc(60px / 2 - 14px - 10px / 2);
+    left: calc(60px / 2 + 14px - 10px / 2);
   }
   18.75% {
-    width: 80px;
-    height: 80px;
-    top: calc(240px / 2 - 57px - 80px / 2);
-    left: calc(240px / 2 + 57px - 80px / 2);
+    width: 20px;
+    height: 20px;
+    top: calc(60px / 2 - 14px - 20px / 2);
+    left: calc(60px / 2 + 14px - 20px / 2);
   }
 }
 .loader__circle3 {
-  top: calc(240px / 2 - 40px / 2);
-  left: calc(240px - 40px - 80px / 2 + 40px / 2);
+  top: calc(60px / 2 - 10px / 2);
+  left: calc(60px - 10px - 20px / 2 + 10px / 2);
+  animation: 1.5s ease-in-out 0s infinite inlarge3;
+}
+@keyframes inlarge3 {
+  0%,
+  25%,
+  37.5%,
+  100% {
+    width: 10px;
+    height: 10px;
+    top: calc(60px / 2 - 10px / 2);
+    left: calc(60px - 10px - 20px / 2 + 10px / 2);
+  }
+  31.25% {
+    width: 20px;
+    height: 20px;
+    top: calc(60px / 2 - 20px / 2);
+    left: calc(60px - 20px);
+  }
 }
 .loader__circle4 {
-  top: calc(240px / 2 + 57px - 40px / 2);
-  left: calc(240px / 2 + 57px - 40px / 2);
+  top: calc(60px / 2 + 14px - 10px / 2);
+  left: calc(60px / 2 + 14px - 10px / 2);
+  animation: 1.5s ease-in-out 0s infinite inlarge4;
+}
+@keyframes inlarge4 {
+  0%,
+  37.5%,
+  50%,
+  100% {
+    width: 10px;
+    height: 10px;
+    top: calc(60px / 2 + 14px - 10px / 2);
+    left: calc(60px / 2 + 14px - 10px / 2);
+  }
+  43.75% {
+    width: 20px;
+    height: 20px;
+    top: calc(60px / 2 + 14px - 20px / 2);
+    left: calc(60px / 2 + 14px - 20px / 2);
+  }
 }
 .loader__circle5 {
-  top: calc(240px - 80px / 2 - 40px / 2);
-  left: calc(240px / 2 - 40px / 2);
+  top: calc(60px - 20px / 2 - 10px / 2);
+  left: calc(60px / 2 - 10px / 2);
+  animation: 1.5s ease-in-out 0s infinite inlarge5;
+}
+@keyframes inlarge5 {
+  0%,
+  50%,
+  62.5%,
+  100% {
+    width: 10px;
+    height: 10px;
+    top: calc(60px - 20px / 2 - 10px / 2);
+    left: calc(60px / 2 - 10px / 2);
+  }
+  56.25% {
+    width: 20px;
+    height: 20px;
+    top: calc(60px - 20px);
+    left: calc(60px / 2 - 20px / 2);
+  }
 }
 .loader__circle6 {
-  top: calc(240px / 2 + 57px - 40px / 2);
-  left: calc(240px / 2 - 57px - 40px / 2);
+  top: calc(60px / 2 + 14px - 10px / 2);
+  left: calc(60px / 2 - 14px - 10px / 2);
+  animation: 1.5s ease-in-out 0s infinite inlarge6;
+}
+@keyframes inlarge6 {
+  0%,
+  62.5%,
+  75%,
+  100% {
+    width: 10px;
+    height: 10px;
+    top: calc(60px / 2 + 14px - 10px / 2);
+    left: calc(60px / 2 - 14px - 10px / 2);
+  }
+  68.75% {
+    width: 20px;
+    height: 20px;
+    top: calc(60px / 2 + 14px - 20px / 2);
+    left: calc(60px / 2 - 14px - 20px / 2);
+  }
 }
 .loader__circle7 {
-  top: calc(240px / 2 - 40px / 2);
-  left: calc(80px / 2 - 40px / 2);
+  top: calc(60px / 2 - 10px / 2);
+  left: calc(20px / 2 - 10px / 2);
+  animation: 1.5s ease-in-out 0s infinite inlarge7;
+}
+@keyframes inlarge7 {
+  0%,
+  75%,
+  87.5%,
+  100% {
+    width: 10px;
+    height: 10px;
+    top: calc(60px / 2 - 10px / 2);
+    left: calc(20px / 2 - 10px / 2);
+  }
+  81.25% {
+    width: 20px;
+    height: 20px;
+    top: calc(60px / 2 - 20px / 2);
+    left: 0;
+  }
 }
 .loader__circle8 {
-  top: calc(240px / 2 - 57px - 40px / 2);
-  left: calc(240px / 2 - 57px - 40px / 2);
+  top: calc(60px / 2 - 14px - 10px / 2);
+  left: calc(60px / 2 - 14px - 10px / 2);
+  animation: 1.5s ease-in-out 0s infinite inlarge8;
+}
+@keyframes inlarge8 {
+  0%,
+  87.5%,
+  100% {
+    width: 10px;
+    height: 10px;
+    top: calc(60px / 2 - 14px - 10px / 2);
+    left: calc(60px / 2 - 14px - 10px / 2);
+  }
+  93.75% {
+    width: 20px;
+    height: 20px;
+    top: calc(60px / 2 - 14px - 20px / 2);
+    left: calc(60px / 2 - 14px - 20px / 2);
+  }
 }

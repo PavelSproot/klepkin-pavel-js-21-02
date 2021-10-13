@@ -30,6 +30,7 @@ html, body {
   align-items: center;
   padding-left: 10px;
   min-width: 820px;
+  justify-content: space-between;
 }
 
 .maincont {
@@ -94,7 +95,6 @@ html, body {
 }
 
 
-
 .popular-items {
   &__name {
     padding-left: 20px;
@@ -150,7 +150,6 @@ html, body {
     color: black;
     text-decoration: none;
   }
-
   &__ref:visited {
     color: black;
     text-decoration: none;
@@ -163,16 +162,12 @@ html, body {
     color: blue;
     text-decoration: underline;
   }
-
   &__item-card_theme-dark {
     background-color: @darkThemeBGColor;
   }
-
   &__item-card_theme-light {
     background-color: @lightThemeBGColor;
   }
-
-
 }
 
 .footer {
@@ -192,7 +187,7 @@ html, body {
 
 .loader {
   @baseSize: 5px;
-  @scaleMult: 8;
+  @scaleMult: 2;
   @totalHeight: @baseSize * 6 * @scaleMult;
   @totalWidth: @baseSize * 6 * @scaleMult;
   @largeSize: @baseSize * 2 * @scaleMult;
@@ -206,7 +201,6 @@ html, body {
   width: @totalWidth;
   height: @totalHeight;
   margin: @baseSize;
-  border: 1px solid black;
   color: white;
 
   & div {
@@ -261,26 +255,116 @@ html, body {
   &__circle3 {
     top: calc(@totalHeight / 2 - @minSize / 2);
     left: calc(@totalWidth - @minSize - @largeSize / 2 + @minSize / 2);
+    animation: @speed ease-in-out 0s infinite inlarge3;
+    @keyframes inlarge3 {
+      0%, 25%, 37.5%, 100% {
+        width: @minSize;
+        height: @minSize;
+        top: calc(@totalHeight / 2 - @minSize / 2);
+        left: calc(@totalWidth - @minSize - @largeSize / 2 + @minSize / 2);
+      }
+      31.25% {
+        width: @largeSize;
+        height: @largeSize;
+        top: calc(@totalHeight / 2 - @largeSize / 2);
+        left: calc(@totalWidth - @largeSize);
+      }
+    }
   }
   &__circle4 {
     top: calc(@totalHeight / 2 + round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
     left: calc(@totalWidth / 2 + round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+    animation: @speed ease-in-out 0s infinite inlarge4;
+    @keyframes inlarge4 {
+      0%, 37.5%, 50%, 100% {
+        width: @minSize;
+        height: @minSize;
+        top: calc(@totalHeight / 2 + round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+        left: calc(@totalWidth / 2 + round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+      }
+      43.75% {
+        width: @largeSize;
+        height: @largeSize;
+        top: calc(@totalHeight / 2 + round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @largeSize / 2);
+        left: calc(@totalWidth / 2 + round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @largeSize / 2);
+      }
+    }
   }
   &__circle5 {
     top: calc(@totalHeight - @largeSize / 2 - @minSize / 2);
     left: calc(@totalWidth / 2 - @minSize / 2);
+    animation: @speed ease-in-out 0s infinite inlarge5;
+    @keyframes inlarge5 {
+      0%, 50%, 62.5%, 100% {
+        width: @minSize;
+        height: @minSize;
+        top: calc(@totalHeight - @largeSize / 2 - @minSize / 2);
+        left: calc(@totalWidth / 2 - @minSize / 2);
+      }
+      56.25% {
+        width: @largeSize;
+        height: @largeSize;
+        top: calc(@totalHeight - @largeSize);
+        left: calc(@totalWidth / 2 - @largeSize / 2);
+      }
+    }
   }
   &__circle6 {
     top: calc(@totalHeight / 2 + round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
     left: calc(@totalWidth / 2 - round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+    animation: @speed ease-in-out 0s infinite inlarge6;
+    @keyframes inlarge6 {
+      0%, 62.5%, 75%, 100% {
+        width: @minSize;
+        height: @minSize;
+        top: calc(@totalHeight / 2 + round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+        left: calc(@totalWidth / 2 - round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+      }
+      68.75% {
+        width: @largeSize;
+        height: @largeSize;
+        top: calc(@totalHeight / 2 + round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @largeSize / 2);
+        left: calc(@totalWidth / 2 - round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @largeSize / 2);
+      }
+    }
   }
   &__circle7 {
     top: calc(@totalHeight / 2 - @minSize / 2);
     left: calc(@largeSize / 2 - @minSize / 2);
+    animation: @speed ease-in-out 0s infinite inlarge7;
+    @keyframes inlarge7 {
+      0%, 75%, 87.5%, 100% {
+        width: @minSize;
+        height: @minSize;
+        top: calc(@totalHeight / 2 - @minSize / 2);
+        left: calc(@largeSize / 2 - @minSize / 2);
+      }
+      81.25% {
+        width: @largeSize;
+        height: @largeSize;
+        top: calc(@totalHeight / 2 - @largeSize / 2);
+        left: 0;
+      }
+    }
   }
   &__circle8 {
     top: calc(@totalHeight / 2 - round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
     left: calc(@totalWidth / 2 - round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+    animation: @speed ease-in-out 0s infinite inlarge8;
+    @keyframes inlarge8 {
+      0%, 87.5%, 100% {
+        width: @minSize;
+        height: @minSize;
+        top: calc(@totalHeight / 2 - round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+        left: calc(@totalWidth / 2 - round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @minSize / 2);
+      }
+      93.75% {
+        width: @largeSize;
+        height: @largeSize;
+        top: calc(@totalHeight / 2 - round(((@totalHeight / 2 - @largeSize / 2) * sqrt(2) / 2)) - @largeSize / 2);
+        left: calc(@totalWidth / 2 - round(((@totalWidth / 2 - @largeSize / 2) * sqrt(2) / 2)) - @largeSize / 2);
+      }
+    }
   }
 
 }
