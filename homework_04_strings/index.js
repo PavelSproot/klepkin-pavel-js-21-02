@@ -1,18 +1,20 @@
 
-/* Задание 1. Написать скрипт, предлогающий пользователю ввести две строки через запятую.
+/* Задание 1. Написать скрипт, предлагающий пользователю ввести две строки через запятую.
 Вывести сообщение true, если вторая строка содержится в первый, в противном случае false,
 регистр при проверке не учитывать.
 */
 
-let result = false;
+// const twoStrings = "Самая лучшая строка,самая";
 const twoStrings = prompt("Задание 1.\nВведите две строки через запятую...");
-if (twoStrings !== null) {
+let result = false;
+if (twoStrings !== null && twoStrings !== '') {
     const arr = twoStrings.toLowerCase().split(",");
     if (arr.length > 1) {
         result = arr[0].includes(arr[1]);
     }
 }
 alert(result);
+
 
 /* Задание 2. Пользователь вводит строку, затем число (кол-во символов).
 Функция усекает строку до кол-ва символов и добавляет многоточие.
@@ -24,9 +26,11 @@ function CutString (str, num) {
     }
     return str;
 }
+// const inputStr = "Слишком длинная строка";
+// const inputNum = 12;
 const inputStr = prompt("Задание 2.\nВведите строку");
 const inputNum = prompt("Задание 2.\nВведите количество символов, до которого усекается строка");
-if (inputStr !== null && inputNum !== null) {
+if (inputStr !== null && inputNum !== null && inputStr !== '' && inputNum !== '') {
     alert (CutString (inputStr, inputNum));
 }
 
@@ -43,8 +47,9 @@ function TransformDate (datestr) {
     }
     return datestr.replace(/\//g, ".").replace(/-/g, ":");
 }
-const userDate = prompt("Задание 3.\nВведите дату в формате 12/02/2021 12-00")
-if (userDate !== null) {
+// const userDate = "12/02/2021 12-00";
+const userDate = prompt("Задание 3.\nВведите дату в формате 12/02/2021 12-00");
+if (userDate !== null && userDate !== '') {
     alert(TransformDate(userDate));
 }
 
@@ -58,8 +63,11 @@ function CheckName (name) {
     const regexp = /^[а-яА-Я]+ [а-яА-Я]+( [а-яА-Я]+(вич|вна)+)*$/;
     return regexp.test(name);
 }
-const userName = prompt("Задание 4.\nВведите ФИО")
-if (userName !== null) {
+
+// const userName = "Петров Иван Сергеевич";
+// const userName = "Петров Иван";
+const userName = prompt("Задание 4.\nВведите ФИО");
+if (userName !== null && userName !== '') {
     alert(CheckName(userName));
 }
 
@@ -71,10 +79,96 @@ function TransformPalmToSnake (str) {
     const regexp = /[A-Z]+[a-z]*/g;
     return str.match(regexp).join("_").toLowerCase();
 }
-const pamalStr = prompt("Задание 5.\nВведите строку в формате PamalCase")
-if (pamalStr !== null) {
+// const pamalStr = "ThisIsSuperString";
+const pamalStr = prompt("Задание 5.\nВведите строку в формате PamalCase");
+if (pamalStr !== null && pamalStr !== '') {
     alert(TransformPalmToSnake(pamalStr));
 }
 
 
+/* Задание 6. На вход даётся многострочная строка, найти и вернуть через alert
+все html комментарии
+*/
 
+function GetComments(str) {
+    const regexp = /(?<=<!--).+?(?=(-->))/gs;
+    return str.match(regexp).map(st => st.trim());
+}
+
+const txt = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ru">
+ <head>
+   <title>Комментарии</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ </head>
+ <body> 
+
+  <!-- Меню нашего сайта -->
+  <div>Меню</div>
+
+  <!-- Контент сайта-->
+  <div>Содержимое документа</div>
+  
+<!--Здесь может быть
+Многострочный
+Комментарий-->
+    <div>Блок1</div>
+    <div>Блок2</div>
+<!--
+Еще один
+Многострочный
+Комментарий
+-->
+
+ </body> 
+</html>
+`;
+alert (GetComments(txt));
+
+
+/* Задание 7. На вход дана строка, вернуть через alert все числа (десятичные
+разделяются сиволом ".")
+*/
+
+function GetNumbers (str) {
+    const regexp = /(?<=^|\s)\d+\.*\d*(?=\s|$)/g;
+    return str.match(regexp);
+}
+//const numbers = "222 444.23 55f55 0.1 4444 36 е543 1";
+const numbers = prompt("Задание 7.\nВведите строку с числами");
+if (numbers != null && numbers !== '') {
+    alert(GetNumbers(numbers));
+}
+
+
+/* 8. Валидация введённого значения. Вводится идентификатор документа.
+Идентификатор должен состоять из четырёх частей по четыре символа,разделённых
+или не разделённых знаком "-". Допускаются только символы латинского алфавита и числа.
+Вывести через alert "ведётся поиск", при соответствии введённого значения, или
+"неверный илентификатор", при несоответствии. При несоответствии снова вывести форму
+для ввода строки.
+ */
+
+function CheckId (str) {
+    const regexp = /^([a-zA-Z\d]{4}(-(?!$))?){4}$/; // 4 секции по 4 буквы/цифры разделенные или не разделенные минусом, в конце и в начале минус недопустим.
+    return regexp.test(str);
+}
+
+let canExit = false;
+do {
+//    const docId = "55r0yjyhfff00334";
+    const docId = prompt("Задание 8.\nВведите идентификатор документа");
+    if (docId != null) {
+        let outMsg;
+        if (CheckId(docId)) {
+            canExit = true;
+            outMsg = "Ведется поиск...";
+        } else {
+            outMsg = "Неверный идентификатор";
+        }
+        alert (outMsg);
+    } else {
+        canExit = true;
+    }
+} while (!canExit);
