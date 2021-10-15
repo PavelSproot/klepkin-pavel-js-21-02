@@ -3,7 +3,7 @@
 Вывести сообщение true, если вторая строка содержится в первый, в противном случае false,
 регистр при проверке не учитывать.
 */
-
+/*
 // const twoStrings = "Самая лучшая строка,самая";
 const twoStrings = prompt("Задание 1.\nВведите две строки через запятую...");
 let result = false;
@@ -14,12 +14,12 @@ if (twoStrings !== null && twoStrings !== '') {
     }
 }
 alert(result);
-
+*/
 
 /* Задание 2. Пользователь вводит строку, затем число (кол-во символов).
 Функция усекает строку до кол-ва символов и добавляет многоточие.
 */
-
+/*
 function CutString (str, num) {
     if (str.length > num) {
         str = str.substr(0, num).concat('...');
@@ -33,13 +33,13 @@ const inputNum = prompt("Задание 2.\nВведите количество 
 if (inputStr !== null && inputNum !== null && inputStr !== '' && inputNum !== '') {
     alert (CutString (inputStr, inputNum));
 }
-
+*/
 
 /* Задание 3. Написать функцию, преобразующее строку с датой и временем
 формата '12/02/2021 12-00' в строку формата 12.02.2021 12:00, используя
 регулярные выражения
 */
-
+/*
 function TransformDate (datestr) {
     const regexp = /^\d{2}\/\d{2}\/\d{4} \d{2}-\d{2}$/;
     if (!regexp.test(datestr)) {
@@ -52,7 +52,7 @@ const userDate = prompt("Задание 3.\nВведите дату в форм�
 if (userDate !== null && userDate !== '') {
     alert(TransformDate(userDate));
 }
-
+*/
 
 /* Задание 4. Написать функцию, валидирующую ФИО из кирилличиских символов
 (считать, что отчество может оканчиваться только на "вна" или "вич" или может
@@ -60,7 +60,7 @@ if (userDate !== null && userDate !== '') {
 */
 
 function CheckName (name) {
-    const regexp = /^[а-яА-Я]+ [а-яА-Я]+( [а-яА-Я]+(вич|вна)+)*$/;
+    const regexp = /^[а-яА-ЯёЁ]+ [а-яА-ЯёЁ]+( [а-яА-ЯёЁ]+(вич|вна)+)*$/;
     return regexp.test(name);
 }
 
@@ -76,7 +76,7 @@ if (userName !== null && userName !== '') {
  */
 
 function TransformPalmToSnake (str) {
-    const regexp = /[A-Z]+[a-z]*/g;
+    const regexp = /[A-ZА-ЯЁ][a-zа-яё]*/g;
     return str.match(regexp).join("_").toLowerCase();
 }
 // const pamalStr = "ThisIsSuperString";
@@ -90,11 +90,7 @@ if (pamalStr !== null && pamalStr !== '') {
 все html комментарии
 */
 
-function GetComments(str) {
-    const regexp = /(?<=<!--).+?(?=(-->))/gs;
-    return str.match(regexp).map(st => st.trim());
-}
-
+/*
 const txt = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="ru">
@@ -124,7 +120,18 @@ const txt = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
  </body> 
 </html>
 `;
-alert (GetComments(txt));
+*/
+
+function GetComments(str) {
+    const regexp = /(?<=<!--).+?(?=(-->))/gs;
+    return str.match(regexp).map(st => st.trim());
+}
+
+const txt = prompt("Задание 6.\nВведите HTML текст");
+if (txt !== null && txt !== '') {
+    alert (GetComments(txt));
+}
+
 
 
 /* Задание 7. На вход дана строка, вернуть через alert все числа (десятичные
@@ -132,10 +139,10 @@ alert (GetComments(txt));
 */
 
 function GetNumbers (str) {
-    const regexp = /(?<=^|\s)\d+\.*\d*(?=\s|$)/g;
+    const regexp = /(?<=^|\D)\d+\.*\d*(?=\D|$)/g;
     return str.match(regexp);
 }
-//const numbers = "222 444.23 55f55 0.1 4444 36 е543 1";
+//const numbers = "k1kk 444.23kjhhkhj0.1Lkjhjh4444llkkjopii36kjkhjе543lkk";
 const numbers = prompt("Задание 7.\nВведите строку с числами");
 if (numbers != null && numbers !== '') {
     alert(GetNumbers(numbers));
@@ -149,7 +156,7 @@ if (numbers != null && numbers !== '') {
 "неверный илентификатор", при несоответствии. При несоответствии снова вывести форму
 для ввода строки.
  */
-
+/*
 function CheckId (str) {
     const regexp = /^([a-zA-Z\d]{4}(-(?!$))?){4}$/; // 4 секции по 4 буквы/цифры разделенные или не разделенные минусом, в конце и в начале минус недопустим.
     return regexp.test(str);
@@ -172,3 +179,4 @@ do {
         canExit = true;
     }
 } while (!canExit);
+*/
