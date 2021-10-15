@@ -1,0 +1,25 @@
+{
+  "name": "klepkin-pavel-js-21-02",
+  "version": "1.0.0",
+  "description": "Less introduction",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PavelSproot/klepkin-pavel-js-21-02.git"
+  },
+  "author": "Pavel Klepkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PavelSproot/klepkin-pavel-js-21-02/issues"
+  },
+  "homepage": "https://github.com/PavelSproot/klepkin-pavel-js-21-02#readme",
+  "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "gulp": "^4.0.2",
+    "gulp-less": "^5.0.0",
+    "less": "^4.1.2"
+  }
+}
