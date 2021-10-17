@@ -138,9 +138,9 @@ calc.showAmount();
 console.log("\nЗадача 7.");
 function filterTypeArray (mixArr) {
     return {
-        numbers: mixArr.filter((elem) => typeof(elem) == "number"),
-        strings: mixArr.filter((elem) => typeof(elem) == "string"),
-        objects: mixArr.filter((elem) => typeof(elem) == "object")
+        numbers: mixArr.filter(elem => typeof(elem) == "number"),
+        strings: mixArr.filter(elem => typeof(elem) == "string"),
+        objects: mixArr.filter(elem => typeof(elem) == "object")
     }
 }
 const mixedArray  = [20, "first string", 15, {val: "SuperString"}, "unit", 0, 15, 20, "Color", "Second value", {name: "Paul"}];
@@ -157,10 +157,42 @@ console.log(`Результат. Объекты: ${resultTypeArray.objects}`);
 переданных в функцию чисел (второе переданное число может быть больше первого)
 */
 
+console.log("Задача 8.");
+
+function getArrayBetween (arr, firstNum, secondNum) {
+    if (firstNum > secondNum) {
+        const tmp = firstNum;
+        firstNum = secondNum;
+        secondNum = tmp;
+    }
+    return arr.filter(elem => {
+        return (firstNum <= elem && elem <= secondNum);
+    });
+}
+
+
+const numbersArray  = [20, 5, 15, 10, 45, 0, 15, 58, 90, 42, 81];
+const firstNumber = 60;
+const secondNumber = 20;
+console.log(`Входной массив: ${numbersArray}\nПервое число: ${firstNumber}\nВторое число: ${secondNumber}`);
+console.log(`Результат: ${getArrayBetween(numbersArray, firstNumber, secondNumber)}`);
+
+
 /* Задача 9.
 Функция принимает две строки. Вывести true, если строки являются анаграммами,
 в противном случае false
 */
+console.log("Задача 9.");
+
+function checkAnagramms (tmpStr1, tmpStr2) {
+    return tmpStr1.replace(/\s+/g, '').toLowerCase().split('').sort().join('') === tmpStr2.replace(/\s+/g, '').toLowerCase().split('').sort().join('');
+}
+
+const str1 = "Тропим притом";
+const str2 = "Импорт портим";
+console.log(`Первая строка: ${str1}\nВторая строка:: ${str2}`);
+console.log(`Результат: ${checkAnagramms(str1, str2)}`);
+
 
 /* Задача 10.
 Создать объект, выводящий в консоль все ключи и значения объекта в формате
@@ -168,6 +200,25 @@ console.log(`Результат. Объекты: ${resultTypeArray.objects}`);
 быть объектом или массивом, содержащими объекты) сама функция в консоль
 выводиться не должна.
 */
+
+console.log("Задача 10.");
+const ourObj = {
+    key1: 25,
+    key2: "str",
+    key3: true,
+    key4: ["k", "v"],
+    key5: 356,
+    showInfo: function () {
+        return Object.entries(this).reduce((accum, [key, val]) => {
+           if (typeof (val) != "function") {
+             accum.push(`${key}: ${val}`);
+           }
+           return accum;
+        }, []).join(',');
+    }
+}
+console.log(`Резудьтат: ${ourObj.showInfo()}`);
+
 
 /* Задача 11.
 Создать функцию-конструктор для объекта, содержащего методы serProp (установить
@@ -177,3 +228,27 @@ console.log(`Результат. Объекты: ${resultTypeArray.objects}`);
 Если какое-то из свойств в объекте отсутствует, действие должно быть разрешено
 */
 
+console.log("Задача 11.");
+
+function BigProperties () {
+    this.serProp = (key, val, {writable = true, configurable = true, enumerable = true }) => {
+      Object.defineProperty(this, key,{
+          value: val,
+          writable: writable,
+          configurable: configurable,
+          enumerable: enumerable
+      });
+    };
+}
+
+const propObj = new BigProperties();
+const tmpKey = 'newKey';
+const tmpVal = 'SuperValue';
+const flagsObj = {
+    writable: true,
+    configurable: false,
+    enumerable: false
+};
+propObj.serProp(tmpKey, tmpVal, flagsObj);
+console.log(`Key: ${tmpKey}:`);
+console.log(Object.getOwnPropertyDescriptor(propObj, tmpKey));
