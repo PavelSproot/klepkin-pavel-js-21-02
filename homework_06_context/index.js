@@ -3,6 +3,8 @@
 функция должна вернуть значение числа. Использовать рекурсию.
  */
 
+console.log('Домашнее задание 6. Задача 1');
+
 const getFibonachiByIndex = (index) => {
     const firstNum = 0;
     const secondNum = 1;
@@ -28,3 +30,35 @@ console.log(getFibonachiByIndex(8));
 функция не вычисляет значение, а возвращает из памяти)
  */
 
+console.log('Домашнее задание 6. Задача 1. Подзадача 2 (Модернизация - внедрение кэша)');
+
+const getFibonachiByIndexNew = (() => {
+    let cache = new Map();
+    return function (index) {
+        const firstNum = 0;
+        const secondNum = 1;
+        if (index === 1) return firstNum;
+        if (index === 2) return secondNum;
+        if (cache[index]) {
+            console.log(`Беру данные из кэша для ${index} => ${cache[index]}`);
+            return cache[index];
+        }
+
+        let count = 3;
+        return (function getNextFibonachiItemNew (fNum, sNum) {
+            if (count === index) {
+                cache[index] = fNum + sNum;
+                return fNum + sNum;
+            } else {
+                ++count;
+                return getNextFibonachiItemNew (sNum, fNum + sNum);
+            }
+        })(firstNum, secondNum);
+    }
+})();
+
+console.log(getFibonachiByIndexNew(9));
+console.log(getFibonachiByIndexNew(6));
+console.log(getFibonachiByIndexNew(5));
+console.log(getFibonachiByIndexNew(9));
+console.log(getFibonachiByIndexNew(5));
