@@ -99,6 +99,8 @@ const inputArray = [
             ['size', 'small']
         ]]
     ]],
+    ['obj', {'val': 'newval', 'name': 'John'}],
+    ['bool', true],
     ['page', 101]
 ];
 console.log(inputArray);
