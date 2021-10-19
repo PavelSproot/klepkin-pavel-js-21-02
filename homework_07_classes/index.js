@@ -18,6 +18,10 @@ const animal = {
     },
     say () {
         console.log(`неизвестное животное молчит`);
+    },
+    rename (newName) {
+        const regexp = /^[а-яА-ЯёЁ\s-]+$/g;
+        if (newName.match(regexp)) Object.defineProperty(this, 'name', {value: newName});
     }
 }
 
@@ -37,10 +41,6 @@ const dog = {
     name: "Тузик",
     say () {
         console.log(`Собака говорит`);
-    },
-    rename (newName) {
-        const regexp = /^[а-яА-ЯёЁ\s-]+$/g;
-        if (newName.match(regexp)) Object.defineProperty(this, 'name', {value: newName});
     }
 }
 
@@ -55,6 +55,7 @@ const parrot = {
 Object.defineProperty(animal, 'name', {writable: false, configurable: false, enumerable: true});
 Object.defineProperty(animal, 'eat', {writable: false, configurable: false, enumerable: false});
 Object.defineProperty(animal, 'say', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(animal, 'rename', {writable: false, configurable: false, enumerable: false});
 Object.defineProperty(cat, 'name', {writable: false, configurable: true, enumerable: true});
 Object.defineProperty(cat, 'say', {writable: false, configurable: false, enumerable: false});
 Object.defineProperty(cat, 'hunt', {writable: false, configurable: false, enumerable: false});
@@ -85,12 +86,83 @@ dog.eat();
 Выполнить то же самое использую функции конструкторы.
 */
 
-console.log('\nДомашнее задание 7. Часть 2');
+console.log('\nДомашнее задание 7. Часть 2 (Функции-конструкторы)');
 
+function Animal (name) {
+    this.name = name;
+    this.eat = function () {
+        console.log(`${this.name} ест`);
+    }
+    this.say = function () {
+        console.log(`неизвестное животное молчит`);
+    }
+}
+
+function Cat () {
+    Animal.call(this, "Мурка");
+    this.say = function () {
+        console.log(`Кошка говорит`);
+    }
+    this.hunt = function () {
+        console.log(`${this.name} охотится`);
+    }
+}
+
+function Dog () {
+    Animal.call(this, "Тузик");
+    this.say = function () {
+        console.log(`Собака говорит`);
+    }
+    this.rename = function (newName) {
+        const regexp = /^[а-яА-ЯёЁ\s-]+$/g;
+        if (newName.match(regexp)) Object.defineProperty(this, 'name', {value: newName});
+    }
+}
+
+function Parrot () {
+    Animal.call(this, "Кеша");
+    this.say = function () {
+        console.log(`Попугай говорит`);
+    }
+}
+
+const cat2 = new Cat();
+const dog2 = new Dog();
+const parrot2 = new Parrot();
+
+Object.defineProperty(cat, 'name', {writable: false, configurable: true, enumerable: true});
+Object.defineProperty(cat, 'say', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(cat, 'eat', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(cat, 'rename', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(cat, 'hunt', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(dog, 'name', {writable: false, configurable: true, enumerable: true});
+Object.defineProperty(dog, 'say', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(dog, 'eat', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(dog, 'rename', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(parrot, 'name', {writable: false, configurable: true, enumerable: true});
+Object.defineProperty(parrot, 'say', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(parrot, 'eat', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(parrot, 'rename', {writable: false, configurable: false, enumerable: false});
+
+console.log(Object.getOwnPropertyDescriptors(cat));
+console.log(Object.getOwnPropertyDescriptors(dog));
+console.log(Object.getOwnPropertyDescriptors(parrot));
+
+cat2.eat();
+cat2.say();
+cat2.hunt();
+dog2.eat();
+dog2.say();
+parrot2.eat();
+parrot2.say();
+
+dog2.rename('Бобик');
+dog2.eat();
 
 
 /*
 Выполнить то же самое, используя классы.
 */
 
-console.log('\nДомашнее задание 7. Часть 3');
+console.log('\nДомашнее задание 7. Часть 3 (Классы)');
+
