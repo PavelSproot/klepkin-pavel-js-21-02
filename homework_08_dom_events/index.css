@@ -1,0 +1,49 @@
+
+
+.main_table {
+    border: 1px solid black;
+    border-spacing: 0;
+    min-width: 400px;
+    width: 600px;
+}
+
+.thead {
+    background-color: olive;
+    text-align: center;
+}
+
+td {
+    border: 1px solid black;
+    padding: 5px;
+
+}
+
+input[type=button] {
+    width: 100px;
+}
+
+.cscheme1 {
+    background-color: green;
+    color: white;
+}
+
+.cscheme2 {
+    background-color: orange;
+    color: black;
+}
+
+.cscheme3 {
+    background-color: blue;
+    color: yellow;
+}
+
+td.tColumn1 {
+    width: 50%;
+}
+td.tColumn2 {
+    width: 30%;
+}
+td.tColumn3 {
+
+}
+
