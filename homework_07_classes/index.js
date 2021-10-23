@@ -126,10 +126,15 @@ function Parrot (name) {
     }
 }
 
+const animal2 = new Animal('Животное');
 const cat2 = new Cat('Мурочка');
 const dog2 = new Dog('Тузичек');
 const parrot2 = new Parrot('Кешеча');
 
+Object.defineProperty(animal2, 'name', {writable: false, configurable: true, enumerable: true});
+Object.defineProperty(animal2, 'say', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(animal2, 'eat', {writable: false, configurable: false, enumerable: false});
+Object.defineProperty(animal2, 'rename', {writable: false, configurable: false, enumerable: false});
 Object.defineProperty(cat2, 'name', {writable: false, configurable: true, enumerable: true});
 Object.defineProperty(cat2, 'say', {writable: false, configurable: false, enumerable: false});
 Object.defineProperty(cat2, 'eat', {writable: false, configurable: false, enumerable: false});
@@ -144,6 +149,7 @@ Object.defineProperty(parrot2, 'say', {writable: false, configurable: false, enu
 Object.defineProperty(parrot2, 'eat', {writable: false, configurable: false, enumerable: false});
 Object.defineProperty(parrot2, 'rename', {writable: false, configurable: false, enumerable: false});
 
+console.log(Object.getOwnPropertyDescriptors(animal2));
 console.log(Object.getOwnPropertyDescriptors(cat2));
 console.log(Object.getOwnPropertyDescriptors(dog2));
 console.log(Object.getOwnPropertyDescriptors(parrot2));
