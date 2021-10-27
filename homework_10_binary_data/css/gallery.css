@@ -1,11 +1,22 @@
-.gallery__imageList {
+.gallery {
+    width: 95%;
+    padding: 5px;
+}
 
+.gallery__imageList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    border: solid 1px black;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .gallery__image {
-    width: 300px;
+    height: 200px;
     margin: 5px;
+}
+
+.gallery__loader {
+    margin: 10px;
 }
