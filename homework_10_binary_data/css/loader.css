@@ -1,0 +1,10 @@
+.loader {
+
+}
+
+.loader__pointer {
+    border: solid 1px darkred;
+    background-color: red;
+    border-radius: 50%;
+    position: relative;
+}
