@@ -1,7 +1,7 @@
 import {HeroTable} from "./heroTable";
 
-const tableContainer = document.getElementById('mainTable');
+const tableContainer: HTMLElement = document.getElementById('mainTable');
 
-const heroTable = new HeroTable();
+const heroTable: HeroTable = new HeroTable();
 tableContainer.append(heroTable.getMainTable());
 

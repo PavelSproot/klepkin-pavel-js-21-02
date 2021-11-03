@@ -4,16 +4,16 @@ export class HeroTable {
     sortOrder: number = 0;
     currentUrl: string = 'https://swapi.dev/api/people/';
 
-    swapi = new Swapi();
-    mainTable = document.createElement('table');
-    mainTableCaption = this.mainTable.createCaption();
-    mainTableHeader = this.mainTable.createTHead();
-    mainTableBody = this.mainTable.createTBody();
-    mainTableFooter = this.mainTable.createTFoot();
+    swapi: Swapi = new Swapi();
+    mainTable: HTMLTableElement = document.createElement('table');
+    mainTableCaption: HTMLTableCaptionElement = this.mainTable.createCaption();
+    mainTableHeader: HTMLTableSectionElement = this.mainTable.createTHead();
+    mainTableBody: HTMLTableSectionElement = this.mainTable.createTBody();
+    mainTableFooter: HTMLTableSectionElement = this.mainTable.createTFoot();
     // Создаем кнопки перелистывания страниц
-    buttonsContainer = document.createElement('div');
-    buttonPrevious = document.createElement('input');
-    buttonNext = document.createElement('input');
+    buttonsContainer: HTMLElement = document.createElement('div');
+    buttonPrevious: HTMLButtonElement = document.createElement('input');
+    buttonNext: HTMLButtonElement = document.createElement('input');
 
     constructor() {
         // Назначение стилей для таблицы
@@ -23,15 +23,15 @@ export class HeroTable {
 
         // Формируем заголовок таблицы
         this.mainTableCaption.innerHTML = '<span><b>Информация о персонажах</b></span>';
-        const mainTableHeaderRow = document.createElement('tr');
-        const mainTableHeaderNameCell = document.createElement('td');
-        const mainTableHeaderHeightCell = document.createElement('td');
-        const mainTableHeaderMassCell = document.createElement('td');
-        const mainTableHeaderGenderCell = document.createElement('td');
-        const mainTableHeaderNameA = document.createElement('a');
-        const mainTableHeaderHeightA = document.createElement('a');
-        const mainTableHeaderMassA = document.createElement('a');
-        const mainTableHeaderGenderA = document.createElement('a');
+        const mainTableHeaderRow: HTMLTableRowElement = document.createElement('tr');
+        const mainTableHeaderNameCell: HTMLTableCellElement = document.createElement('td');
+        const mainTableHeaderHeightCell: HTMLTableCellElement = document.createElement('td');
+        const mainTableHeaderMassCell: HTMLTableCellElement = document.createElement('td');
+        const mainTableHeaderGenderCell: HTMLTableCellElement = document.createElement('td');
+        const mainTableHeaderNameA: HTMLAnchorElement = document.createElement('a');
+        const mainTableHeaderHeightA: HTMLAnchorElement = document.createElement('a');
+        const mainTableHeaderMassA: HTMLAnchorElement = document.createElement('a');
+        const mainTableHeaderGenderA: HTMLAnchorElement = document.createElement('a');
 
         // Заполняем загловок таблицы
         mainTableHeaderNameCell.classList.add('colName');
@@ -51,10 +51,10 @@ export class HeroTable {
         this.mainTableHeader.append(mainTableHeaderRow);
 
         // Назначаем эвент-хэндлеры для сортировки по нажатию на заголовке
-        mainTableHeaderNameA.addEventListener('click', () => { (this.sortOrder === 1)? this.sortOrder = 2 : this.sortOrder = 1; this.swapi.getPeople((e: SwapiResultType) => this.fillTable(e), this.currentUrl);});
-        mainTableHeaderHeightA.addEventListener('click', () => { (this.sortOrder === 3)? this.sortOrder = 4 : this.sortOrder = 3; this.swapi.getPeople((e: SwapiResultType) => this.fillTable(e), this.currentUrl);});
-        mainTableHeaderMassA.addEventListener('click', () => { (this.sortOrder === 5)? this.sortOrder = 6 : this.sortOrder = 5; this.swapi.getPeople((e: SwapiResultType) => this.fillTable(e), this.currentUrl);});
-        mainTableHeaderGenderA.addEventListener('click', () => { (this.sortOrder === 7)? this.sortOrder = 8 : this.sortOrder = 7; this.swapi.getPeople((e: SwapiResultType) => this.fillTable(e), this.currentUrl);});
+        mainTableHeaderNameA.addEventListener('click', (): void => { (this.sortOrder === 1)? this.sortOrder = 2 : this.sortOrder = 1; this.swapi.getPeople((e: SwapiResultType): void => this.fillTable(e), this.currentUrl);});
+        mainTableHeaderHeightA.addEventListener('click', (): void => { (this.sortOrder === 3)? this.sortOrder = 4 : this.sortOrder = 3; this.swapi.getPeople((e: SwapiResultType): void => this.fillTable(e), this.currentUrl);});
+        mainTableHeaderMassA.addEventListener('click', (): void => { (this.sortOrder === 5)? this.sortOrder = 6 : this.sortOrder = 5; this.swapi.getPeople((e: SwapiResultType): void => this.fillTable(e), this.currentUrl);});
+        mainTableHeaderGenderA.addEventListener('click', (): void => { (this.sortOrder === 7)? this.sortOrder = 8 : this.sortOrder = 7; this.swapi.getPeople((e: SwapiResultType): void => this.fillTable(e), this.currentUrl);});
 
         this.buttonsContainer.classList.add('buttonsContainer');
         this.buttonPrevious.type = 'button';
@@ -64,32 +64,32 @@ export class HeroTable {
         this.buttonPrevious.disabled = true;
         this.buttonNext.disabled = true;
 // Назначаем эвент-хэндлеры для нажатий на кнопки
-        this.buttonPrevious.addEventListener('click', () => this.previousButtonHandle());
-        this.buttonNext.addEventListener('click', () => this.nextButtonHandle());
+        this.buttonPrevious.addEventListener('click', (): void => this.previousButtonHandle());
+        this.buttonNext.addEventListener('click', (): void => this.nextButtonHandle());
         this.buttonsContainer.append(this.buttonPrevious, this.buttonNext);
 
-        const mainTableFooterRow = document.createElement('tr');
-        const mainTableFooterCol1 = document.createElement('td');
+        const mainTableFooterRow: HTMLTableRowElement = document.createElement('tr');
+        const mainTableFooterCol1: HTMLTableCellElement = document.createElement('td');
         mainTableFooterCol1.colSpan = 4;
         mainTableFooterCol1.append(this.buttonsContainer);
         mainTableFooterRow.append(mainTableFooterCol1);
         this.mainTableFooter.append(mainTableFooterRow);
 
-        this.swapi.getPeople((obj: SwapiResultType) => this.fillTable(obj), this.currentUrl);
+        this.swapi.getPeople((obj: SwapiResultType): void => this.fillTable(obj), this.currentUrl);
     }
-    getMainTable () {
+    getMainTable (): HTMLTableElement {
         return this.mainTable;
     }
     // Метод заполнения таблицы на основе переданного объекта с массивом данных
-    fillTable (obj: SwapiResultType) {
+    fillTable (obj: SwapiResultType): void {
         this.mainTableBody.innerHTML = '';
-        const items = this.sortResults(obj.results); // Сортровка
-        items.forEach(({name, height, mass, gender}: SwapiResultItemType) => {
-            const newRow = document.createElement('tr');
-            const newCellName = document.createElement('td');
-            const newCellHeight = document.createElement('td');
-            const newCellMass = document.createElement('td');
-            const newCellGender = document.createElement('td');
+        const items: SwapiResultItemType[] = this.sortResults(obj.results); // Сортровка
+        items.forEach(({name, height, mass, gender}: SwapiResultItemType): void => {
+            const newRow: HTMLTableRowElement = document.createElement('tr');
+            const newCellName: HTMLTableCellElement = document.createElement('td');
+            const newCellHeight: HTMLTableCellElement = document.createElement('td');
+            const newCellMass: HTMLTableCellElement = document.createElement('td');
+            const newCellGender: HTMLTableCellElement = document.createElement('td');
             newCellName.classList.add('cellName');
             newCellHeight.classList.add('cellHeight');
             newCellMass.classList.add('cellMass');
@@ -116,12 +116,12 @@ export class HeroTable {
         }
     }
     // Метод сортировки
-    sortResults (arr: SwapiResultItemType[]) {
+    sortResults (arr: SwapiResultItemType[]): SwapiResultItemType[] {
         if (this.sortOrder !== 0) {
-            const regexp = /^\d+\.*\d*$/; // Шаблон для проверки на число (для метода сравнения - либо, как числа, либо, как строки)
+            const regexp: RegExp = /^\d+\.*\d*$/; // Шаблон для проверки на число (для метода сравнения - либо, как числа, либо, как строки)
             let val1: number | string;
             let val2: number | string;
-            return arr.sort((a: SwapiResultItemType, b: SwapiResultItemType) => {
+            return arr.sort((a: SwapiResultItemType, b: SwapiResultItemType): number => {
                 switch (this.sortOrder) {
                     case 1: {
                         val1 = a.name;
@@ -198,14 +198,14 @@ export class HeroTable {
     }
 
 // обработчик нажатия кнопки Следующий
-    nextButtonHandle () {
+    nextButtonHandle (): void {
         this.currentUrl = this.buttonNext.dataset.url;
-        this.swapi.getPeople((e: SwapiResultType) => this.fillTable(e), this.currentUrl);
+        this.swapi.getPeople((e: SwapiResultType): void => this.fillTable(e), this.currentUrl);
     }
 
 // обработчик нажатия кнопки Предыдущий
-    previousButtonHandle () {
+    previousButtonHandle (): void {
         this.currentUrl = this.buttonPrevious.dataset.url;
-        this.swapi.getPeople((e: SwapiResultType) => this.fillTable(e), this.currentUrl);
+        this.swapi.getPeople((e: SwapiResultType): void => this.fillTable(e), this.currentUrl);
     }
 }

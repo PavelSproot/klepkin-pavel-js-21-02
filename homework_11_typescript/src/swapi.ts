@@ -1,14 +1,12 @@
 // объект взамодействия с сервером
 export class Swapi {
-    constructor() {
-
-    }
-    getPeople (callback: Function, url: string) {
+    constructor() {}
+    getPeople (callback: Function, url: string): void {
         fetch(url)
-            .then(response => {
+            .then((response: Response): Promise<SwapiResultType> => {
                 return response.json()
             })
-            .then((res: SwapiResultType) => callback(res));
+            .then((res: SwapiResultType): void => callback(res));
     }
 }
 
