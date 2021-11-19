@@ -1,0 +1,12 @@
+.sidebar {
+    background-color: #f5f5f5;
+    width: 240px;
+    display: block;
+    padding: 10px;
+    min-width: 240px;
+    max-width: 240px;
+}
+
+.fish-menu__fish {
+    padding-bottom: 10px;
+}
