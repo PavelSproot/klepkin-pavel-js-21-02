@@ -1,0 +1,14 @@
+.header {
+    background-color: green;
+    color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    min-width: 820px;
+    justify-content: space-between;
+}
+
+.headerCaption {
+    font-size: 32px;
+}

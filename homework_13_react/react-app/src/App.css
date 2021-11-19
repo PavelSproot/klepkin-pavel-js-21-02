@@ -1,0 +1,34 @@
+.App {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  min-width: 820px;
+}
+
+#root {
+  height: 100%;
+}
+
+.App-header {
+
+}
+
+.App-mainContainer {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+}
+
+.App-workContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
