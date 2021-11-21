@@ -1,0 +1,11 @@
+.popular-items__name {
+    padding-left: 20px;
+}
+
+.popular-items__cards {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
