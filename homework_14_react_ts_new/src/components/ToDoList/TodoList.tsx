@@ -15,16 +15,20 @@ interface State {
 export default class TodoList extends React.Component<{}, State> {
   taskFieldRef: RefObject<HTMLInputElement>;
 
-  todoStorage = new LocalStorageTodoList();
+  todoStorage: LocalStorageTodoList;
 
-  constructor(props: {}, state: State ) {
+  constructor(props: {}, state: State) {
     super(props, state);
     this.addElement = this.addElement.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.removeElement = this.removeElement.bind(this);
     this.loadElements = this.loadElements.bind(this);
-    this.loadElements();
+    this.todoStorage = new LocalStorageTodoList();
     this.taskFieldRef = React.createRef();
+    this.state = {
+      listElements: this.todoStorage.getItems().map((elem: string) => ({ taskName: elem })),
+      inputVal: '',
+    };
   }
 
   handleInputChange(e: ChangeEvent<HTMLInputElement>) {
@@ -33,21 +37,20 @@ export default class TodoList extends React.Component<{}, State> {
     });
   }
 
-  loadElements() {
-    const newState: Array<ListElement> = this.todoStorage.getItems().map((elem: string) => ({ taskName: elem }));
-    console.log(newState);
-    this.setState({ listElements: newState, inputVal: '' });
-    console.log(this.state);
+  loadElements(saveInputVal: boolean) {
+    const newStateArr: Array<ListElement> = this.todoStorage.getItems().map((elem: string) => ({ taskName: elem }));
+    const newInputVal = saveInputVal ? this.taskFieldRef.current?.value || '' : '';
+    this.setState({ listElements: newStateArr, inputVal: newInputVal });
   }
 
   addElement(elem: ListElement) {
     this.todoStorage.addItemToStorage(elem.taskName);
-    this.loadElements();
+    this.loadElements(false);
   }
 
   removeElement(idx: number) {
     this.todoStorage.removeItemFromStorage(idx);
-    this.loadElements();
+    this.loadElements(true);
   }
 
   render() : React.ReactNode {
@@ -58,7 +61,14 @@ export default class TodoList extends React.Component<{}, State> {
         </div>
         <div className="todoList__body">
           { this.state.listElements.map(
-            (elem: ListElement, idx: number) => <TodoListElement taskName={elem.taskName} listIndex={idx} removeCallback={this.removeElement} key={idx} />,
+            (elem: ListElement, idx: number) => (
+              <TodoListElement
+                taskName={elem.taskName}
+                listIndex={idx}
+                removeCallback={this.removeElement}
+                key={idx}
+              />
+            ),
           )}
         </div>
         <div className="todoList__buttonArea">
