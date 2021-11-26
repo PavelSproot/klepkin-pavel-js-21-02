@@ -1,0 +1,37 @@
+.todoListElement {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px;
+}
+
+.todoListElement__taskName {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.todoListElement__removeBlock {
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: red;
+    padding: 10px;
+}
+
+.labelRemove:focus {
+    color: yellow;
+    text-decoration: none;
+}
+
+.labelRemove:hover {
+    color: yellow;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
