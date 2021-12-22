@@ -1,17 +1,17 @@
 import { Dispatch } from 'redux';
-import { UserListActionType } from '../types/actions';
+import { ListUserShortActionType } from '../types/actions';
 import {
   HIDE_USERLIST_LOADING, LOAD_USERLIST_ERROR, LOAD_USERLIST_SUCCESS, SHOW_USERLIST_LOADING,
 } from '../constants/actions/userList';
-import { UserResponseType } from '../types/api/dumMyApiResponses';
-import getUserList from '../api/dummyApi';
+import { ListResponseType, UserShortResponseType } from '../../types/api/dumMyApiResponses';
+import getUserList from '../../api/dummyApi';
 
-const loadSuccessAction = (users: Array<UserResponseType>): UserListActionType => ({
+const loadSuccessAction = (users: ListResponseType<UserShortResponseType>): ListUserShortActionType => ({
   type: LOAD_USERLIST_SUCCESS,
   userList: users,
 });
 
-const loadErrorAction = (error: string): UserListActionType => ({
+const loadErrorAction = (error: string): ListUserShortActionType => ({
   type: LOAD_USERLIST_ERROR,
   error,
 });
@@ -27,7 +27,12 @@ const hideLoadingAction = () => ({
 const loadUserList = (pageNum: number, pageSize: number) => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
   getUserList(pageNum, pageSize)
-    .then((resp) => dispatch(loadSuccessAction(resp)))
+    .then((resp) => {
+      if (resp.error) {
+        return dispatch(loadErrorAction(resp.error));
+      }
+      return dispatch(loadSuccessAction(resp));
+    })
     .catch((error) => dispatch(loadErrorAction(error)))
     .finally(() => dispatch(hideLoadingAction()));
 };

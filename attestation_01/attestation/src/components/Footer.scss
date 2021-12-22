@@ -1,0 +1,15 @@
+.footer {
+  $baseHeaderSize: 70px;
+  $headerFontSize: 14px;
+  $headerFontSizeSmall: 10px;
+  $iconSize: 20px;
+  $iconSizeSmall: 15px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height: $baseHeaderSize + 10;
+  padding: 5px;
+  width: 100%;
+}

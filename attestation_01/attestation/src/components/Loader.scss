@@ -1,0 +1,208 @@
+
+@function setSize ($mult) {
+  $baseSize: $baseSize * $mult;
+  $totalHeight: $baseSize * 6 * $scaleMult;
+  $totalWidth: $baseSize * 6 * $scaleMult;
+  $largeSize: $baseSize * 2 * $scaleMult;
+  $minSize: $baseSize * $scaleMult;
+  @return $baseSize;
+}
+
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1;
+}
+
+.loader {
+  $baseSize: 10px;
+  $scaleMult: 2;
+  $totalHeight: $baseSize * 6 * $scaleMult;
+  $totalWidth: $baseSize * 6 * $scaleMult;
+  $largeSize: $baseSize * 2 * $scaleMult;
+  $minSize: $baseSize * $scaleMult;
+  $color: blue;
+  $speed: 1.5s;
+  $padding: ($largeSize - $minSize) / -2;
+
+  position: relative;
+  display: flex;
+  width: $totalWidth;
+  height: $totalHeight;
+  margin: $baseSize;
+  color: white;
+
+  & div {
+    display: flex;
+    position: absolute;
+    background-color: $color;
+    border-radius: 50%;
+    width: $minSize;
+    height: $minSize;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__circle1 {
+    top: $largeSize / 2 - $minSize / 2;
+    left: $totalWidth / 2 - $minSize / 2;
+    animation: $speed ease-in-out 0s infinite inlarge1;
+    @keyframes inlarge1 {
+      0%, 12.5%, 100% {
+        width: $minSize;
+        height: $minSize;
+        top: $largeSize / 2 - $minSize / 2;
+        left: $totalWidth / 2 - $minSize / 2;
+      }
+      6.25% {
+        width: $largeSize;
+        height: $largeSize;
+        top: 0;
+        left: $totalWidth / 2 - $largeSize / 2;
+      }
+    }
+  }
+  &__circle2 {
+    top: $totalHeight / 2 - round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+    left: $totalWidth / 2 + round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+    animation: $speed ease-in-out 0s infinite inlarge2;
+    @keyframes inlarge2 {
+      0%, 12.5%, 25%, 100% {
+        width: $minSize;
+        height: $minSize;
+        top: $totalHeight / 2 - round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+        left: $totalWidth / 2 + round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+      }
+      18.75% {
+        width: $largeSize;
+        height: $largeSize;
+        top: $totalHeight / 2 - round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $largeSize / 2;
+        left: $totalWidth / 2 + round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $largeSize / 2;
+      }
+    }
+  }
+  &__circle3 {
+    top: $totalHeight / 2 - $minSize / 2;
+    left: $totalWidth - $minSize - $largeSize / 2 + $minSize / 2;
+    animation: $speed ease-in-out 0s infinite inlarge3;
+    @keyframes inlarge3 {
+      0%, 25%, 37.5%, 100% {
+        width: $minSize;
+        height: $minSize;
+        top: $totalHeight / 2 - $minSize / 2;
+        left: $totalWidth - $minSize - $largeSize / 2 + $minSize / 2;
+      }
+      31.25% {
+        width: $largeSize;
+        height: $largeSize;
+        top: $totalHeight / 2 - $largeSize / 2;
+        left: $totalWidth - $largeSize;
+      }
+    }
+  }
+  &__circle4 {
+    top: $totalHeight / 2 + round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+    left: $totalWidth / 2 + round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+    animation: $speed ease-in-out 0s infinite inlarge4;
+    @keyframes inlarge4 {
+      0%, 37.5%, 50%, 100% {
+        width: $minSize;
+        height: $minSize;
+        top: $totalHeight / 2 + round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+        left: $totalWidth / 2 + round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+      }
+      43.75% {
+        width: $largeSize;
+        height: $largeSize;
+        top: $totalHeight / 2 + round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $largeSize / 2;
+        left: $totalWidth / 2 + round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $largeSize / 2;
+      }
+    }
+  }
+  &__circle5 {
+    top: $totalHeight - $largeSize / 2 - $minSize / 2;
+    left: $totalWidth / 2 - $minSize / 2;
+    animation: $speed ease-in-out 0s infinite inlarge5;
+    @keyframes inlarge5 {
+      0%, 50%, 62.5%, 100% {
+        width: $minSize;
+        height: $minSize;
+        top: $totalHeight - $largeSize / 2 - $minSize / 2;
+        left: $totalWidth / 2 - $minSize / 2;
+      }
+      56.25% {
+        width: $largeSize;
+        height: $largeSize;
+        top: $totalHeight - $largeSize;
+        left: $totalWidth / 2 - $largeSize / 2;
+      }
+    }
+  }
+  &__circle6 {
+    top: $totalHeight / 2 + round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+    left: $totalWidth / 2 - round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+    animation: $speed ease-in-out 0s infinite inlarge6;
+    @keyframes inlarge6 {
+      0%, 62.5%, 75%, 100% {
+        width: $minSize;
+        height: $minSize;
+        top: $totalHeight / 2 + round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+        left: $totalWidth / 2 - round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+      }
+      68.75% {
+        width: $largeSize;
+        height: $largeSize;
+        top: $totalHeight / 2 + round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $largeSize / 2;
+        left: $totalWidth / 2 - round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $largeSize / 2;
+      }
+    }
+  }
+  &__circle7 {
+    top: $totalHeight / 2 - $minSize / 2;
+    left: $largeSize / 2 - $minSize / 2;
+    animation: $speed ease-in-out 0s infinite inlarge7;
+    @keyframes inlarge7 {
+      0%, 75%, 87.5%, 100% {
+        width: $minSize;
+        height: $minSize;
+        top: $totalHeight / 2 - $minSize / 2;
+        left: $largeSize / 2 - $minSize / 2;
+      }
+      81.25% {
+        width: $largeSize;
+        height: $largeSize;
+        top: $totalHeight / 2 - $largeSize / 2;
+        left: 0;
+      }
+    }
+  }
+  &__circle8 {
+    top: $totalHeight / 2 - round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+    left: $totalWidth / 2 - round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+    animation: $speed ease-in-out 0s infinite inlarge8;
+    @keyframes inlarge8 {
+      0%, 87.5%, 100% {
+        width: $minSize;
+        height: $minSize;
+        top: $totalHeight / 2 - round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+        left: $totalWidth / 2 - round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $minSize / 2;
+      }
+      93.75% {
+        width: $largeSize;
+        height: $largeSize;
+        top: $totalHeight / 2 - round((($totalHeight / 2 - $largeSize / 2) * sqrt(2) / 2)) - $largeSize / 2;
+        left: $totalWidth / 2 - round((($totalWidth / 2 - $largeSize / 2) * sqrt(2) / 2)) - $largeSize / 2;
+      }
+    }
+  }
+
+}
+
+
+

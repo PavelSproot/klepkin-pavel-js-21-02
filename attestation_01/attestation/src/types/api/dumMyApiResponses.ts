@@ -5,19 +5,12 @@ export interface ListResponseType<T> {
   limit: number;
 }
 
-export interface OwnerType {
-  firstName?: string;
-  lastName?: string;
-  id?: string;
-  picture?: string;
-}
-
-export interface CommentType {
+export interface CommentResponsType {
   id?: string;
   message?: string;
   post?: string;
   publishDate?: string;
-  owner?: OwnerType;
+  owner?: UserShortResponseType;
 }
 
 export interface UserShortResponseType {
@@ -28,7 +21,7 @@ export interface UserShortResponseType {
   picture?: string;
 }
 
-export interface UserResponseType {
+export interface UserResponseType extends ResponseError{
   id?: string;
   title?: string;
   firstName?: string;
@@ -41,6 +34,20 @@ export interface UserResponseType {
   picture?: string;
 }
 
+export interface PostShortResponseType {
+  id: string,
+  text: string,
+  image: string,
+  likes: number,
+  tags: Array<string>,
+  publishDate: string,
+  owner: UserShortResponseType
+}
+
+export interface PostFullResponseType extends PostShortResponseType {
+  link: string,
+}
+
 export interface ResponseError {
-  error: string;
+  error?: string;
 }
