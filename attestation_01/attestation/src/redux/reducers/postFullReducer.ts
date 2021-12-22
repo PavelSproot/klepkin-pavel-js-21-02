@@ -7,7 +7,7 @@ import {
   HIDE_POSTFULL_LOADING, LOAD_POSTFULL_ERROR, LOAD_POSTFULL_SUCCESS, SHOW_POSTFULL_LOADING,
 } from '../constants/actions/postFull';
 
-const initialState: PostFullState = {
+export const initialPostFullReducerState: PostFullState = {
   postFull: {
     id: '',
     text: '',
@@ -48,7 +48,7 @@ const loadError = (draft: PostFullState, e?: any) => {
   return draft;
 };
 
-export default (state = initialState, action: PostFullActionType) => produce(
+export default (state = initialPostFullReducerState, action: PostFullActionType) => produce(
   state,
   (draft: PostFullState) => {
     switch (action.type) {

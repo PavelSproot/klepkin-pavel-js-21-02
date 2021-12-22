@@ -60,7 +60,7 @@ const Header = function ({
                       <div className="header__avatar">
                         { (avatar ? <img className="header__avatar-img" src={avatar} alt={username} /> : <div />)}
                       </div>
-                      <div className="header__username">{username}</div>
+                      <div className="header__username"><Link to={`/userprofile/${id}`}>{username}</Link></div>
                     </div>
                   )
                   : (<div><Link to="/login"><span>{HEADER_LOGIN_LABEL}</span></Link></div>

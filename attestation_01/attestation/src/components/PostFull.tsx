@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import './PostFull.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import { State } from '../redux/types/state';
 import Loader from './Loader';
 import loadPostFull from '../redux/actions/postFullActions';
@@ -9,6 +11,7 @@ import { PostFullResponseType } from '../types/api/dumMyApiResponses';
 import { makePostDateFromISO } from '../utills/stringFunctions';
 import Hint from '../wrappers/hint/Hint';
 import CommentList from './CommentList';
+import { USERPROFILE_URL } from '../constants/api/dummyApi';
 
 interface Props {
   postId: string;
@@ -17,14 +20,20 @@ interface Props {
   loaded: boolean;
   error: any;
   loadPost: (id: string) => void;
+  closeCallback: () => void;
 }
 
 const PostFull = function ({
-  postId, postFull, loading, loaded, error, loadPost,
+  postId, postFull, loading, loaded, error, loadPost, closeCallback,
 }: Props) {
+  const navigate = useNavigate();
   useEffect(() => {
     loadPost && loadPost(postId);
   }, []);
+  const goOwner = () => {
+    closeCallback();
+    navigate(`/${USERPROFILE_URL}/${postFull.owner.id}`);
+  };
   return (
     <div className="postFull">
       <div className="postFull__total-container">
@@ -45,7 +54,7 @@ const PostFull = function ({
                               <div className="postFull__avatar-div"><img src={postFull.owner.picture} alt="" /></div>
                             </div>
                             <div className="postFull__username-container">
-                              <div className="userFull__name"><Hint element={<span className="postFull__username-span">{`${postFull.owner.title} ${postFull.owner.firstName} ${postFull.owner.lastName}`}</span>} hintText={postFull.owner.id || ''} /></div>
+                              <div className="userFull__name"><Hint element={<Button type="link" onClick={goOwner}><span className="postFull__username-span">{`${postFull.owner.title} ${postFull.owner.firstName} ${postFull.owner.lastName}`}</span></Button>} hintText={postFull.owner.id || ''} /></div>
                             </div>
                           </div>
                           <div className="postFull__date-container">

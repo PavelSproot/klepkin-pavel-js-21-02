@@ -89,7 +89,7 @@ const PostList = function ({
         </div>
         {postID && (
           <Modal footer={null} centered visible onCancel={hidePostInfo}>
-            <PostFull postId={postID} />
+            <PostFull postId={postID} closeCallback={hidePostInfo} />
           </Modal>
         )}
       </div>
