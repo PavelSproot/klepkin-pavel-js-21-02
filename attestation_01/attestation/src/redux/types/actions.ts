@@ -16,6 +16,7 @@ export interface ListUserShortActionType extends Action{
 
 export interface UserActionType extends Action{
   user?: UserResponseType;
+  doAction?: boolean;
 }
 
 export interface ListPostShortActionType extends Action{

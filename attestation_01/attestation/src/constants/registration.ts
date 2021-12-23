@@ -11,6 +11,7 @@ export const REG_FORM_PH_EMAIL = 'anonim@example.com';
 export const REG_FORM_TITLE_PHONE = 'Телефон:';
 export const REG_FORM_PH_PHONE = '+79991234567';
 export const REG_FORM_TITLE_BUTTON_REGISTER = 'Зарегистрироваться';
+export const REG_FORM_TITLE_BUTTON_SAVE = 'Сохранить';
 export const REG_FORM_TITLE_HAS_ACCOUNT = 'Уже есть аккаунт?';
 export const REG_FORM_TITLE_LOGIN = 'Войти';
 export const REG_FORM_TITLE_MALE = 'Мужской';
@@ -29,3 +30,5 @@ export const REG_FORM_ERROR_PHONE_CONT = 'Номер телефона долже
 export const REG_FORM_ERROR_NOT_ALL = 'Не все обязатальные поля заполнены!';
 
 export const REG_FORM_SUCCESS_CREATION = 'Пользователь создан успешно. Ваш ID: ';
+
+export const EDIT_FORM_EDIT_BUTTON_DESCRIPTION = 'Редактировать';

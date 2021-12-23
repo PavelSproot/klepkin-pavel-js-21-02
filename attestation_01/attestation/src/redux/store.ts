@@ -8,6 +8,7 @@ import comments from './reducers/commentListReducer';
 import userProfile from './reducers/userProfileReducer';
 import registerUser from './reducers/registrationReducer';
 import authUser from './reducers/loginReducer';
+import editUser from './reducers/editUserReducer';
 
 const store = createStore(
   combineReducers(
@@ -19,6 +20,7 @@ const store = createStore(
       userProfile,
       registerUser,
       authUser,
+      editUser,
     },
   ),
   composeWithDevTools(applyMiddleware(thunk)),

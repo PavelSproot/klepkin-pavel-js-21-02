@@ -3,14 +3,17 @@ import './UserProfile.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useParams } from 'react-router-dom';
+import { FormOutlined } from '@ant-design/icons';
+import { Button, Modal } from 'antd';
 import { UserResponseType } from '../../types/api/dumMyApiResponses';
-import loadUserProfile from '../../redux/actions/userProfileActions';
+import loadUserProfile, { hideUserEditAction, showUserEditAction } from '../../redux/actions/userProfileActions';
 import { State } from '../../redux/types/state';
 import Loader from '../../components/Loader';
 import Hint from '../../wrappers/hint/Hint';
 import { makeDateOnlyFromISO } from '../../utills/stringFunctions';
 import PostList from '../PostList/PostList';
-// import PostList from '../PostList/PostList';
+import { EDIT_FORM_EDIT_BUTTON_DESCRIPTION } from '../../constants/registration';
+import UserEdit from '../../components/UserEdit';
 
 interface Params {
   userId: string;
@@ -18,14 +21,18 @@ interface Params {
 
 interface Props {
   user: UserResponseType;
+  authUser: UserResponseType;
   loading: boolean;
   loaded: boolean;
   error: any;
+  doAction: boolean;
   loadUser: (id: string) => void;
+  showUserEdit: () => void;
+  hideUserEdit: () => void;
 }
 
 const UserProfile = function ({
-  user, loading, loaded, error, loadUser,
+  user, authUser, loading, loaded, error, doAction, loadUser, showUserEdit, hideUserEdit,
 }: Props) {
   const params = useParams() as Params;
   useEffect(() => {
@@ -55,7 +62,19 @@ const UserProfile = function ({
                             <div className="userProfile__name-container">
                               <Hint element={<span className="userProfile__username-span">{`${user.title} ${user.firstName} ${user.lastName}`}</span>} hintText={user.id || ''} />
                             </div>
-                            <div className="userProfile__button-container" />
+                            <div className="userProfile__button-container">
+                              {
+                                    (authUser.id && authUser.id === user.id)
+                                      ? (
+                                        <Button onClick={() => showUserEdit()}>
+                                          <FormOutlined alt={EDIT_FORM_EDIT_BUTTON_DESCRIPTION} />
+                                        &nbsp;
+                                          {EDIT_FORM_EDIT_BUTTON_DESCRIPTION}
+                                        </Button>
+                                      )
+                                      : <div />
+                                }
+                            </div>
                           </div>
                           <div className="userProfile__user-data-container">
                             <div>{`Пол: ${user.gender}`}</div>
@@ -76,6 +95,11 @@ const UserProfile = function ({
                   </div>
                 )
         }
+        {doAction && (
+          <Modal footer={null} centered visible onCancel={hideUserEdit}>
+            <UserEdit closeCallback={hideUserEdit} reloadCallback={loadUser} />
+          </Modal>
+        )}
       </div>
     </div>
   );
@@ -85,11 +109,15 @@ export default connect(
   (state: State) => (
     {
       user: state.userProfile.user,
+      authUser: state.authUser.user,
       loading: state.userProfile.loading,
       loaded: state.userProfile.loaded,
       error: state.userProfile.error,
+      doAction: state.userProfile.doAction,
     }),
   (dispatch) => ({
     loadUser: bindActionCreators(loadUserProfile, dispatch),
+    showUserEdit: bindActionCreators(showUserEditAction, dispatch),
+    hideUserEdit: bindActionCreators(hideUserEditAction, dispatch),
   }),
 )(UserProfile);

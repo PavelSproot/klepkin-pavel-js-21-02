@@ -4,10 +4,9 @@ import { UserActionType } from '../types/actions';
 import { UserState } from '../types/state';
 import { UserResponseType } from '../../types/api/dumMyApiResponses';
 import {
-  AUTH_LOGOUT,
-  HIDE_AUTH_LOADING, LOAD_AUTH_ERROR, LOAD_AUTH_SUCCESS, SHOW_AUTH_LOADING,
-} from '../constants/actions/login';
-import LocalStorageAuth from '../../utills/localStore';
+  CLEAR_EDITUSER_LOADING,
+  HIDE_EDITUSER_LOADING, LOAD_EDITUSER_ERROR, LOAD_EDITUSER_SUCCESS, SHOW_EDITUSER_LOADING,
+} from '../constants/actions/editUser';
 
 const initialState: UserState = {
   user: {} as UserResponseType,
@@ -42,13 +41,9 @@ const loadError = (draft: UserState, e?: any) => {
   return draft;
 };
 
-const logOut = (draft: UserState) => {
+const clearLoading = (draft: UserState) => {
   draft.loading = false;
   draft.loaded = false;
-  delete draft.error;
-  draft.user = {} as UserResponseType;
-  const ls = new LocalStorageAuth();
-  ls.removeItemFromStorage();
   return draft;
 };
 
@@ -56,11 +51,11 @@ export default (state = initialState, action: UserActionType) => produce(
   state,
   (draft: UserState) => {
     switch (action.type) {
-      case SHOW_AUTH_LOADING: return showLoading(draft);
-      case HIDE_AUTH_LOADING: return hideLoading(draft);
-      case LOAD_AUTH_SUCCESS: return loadSuccess(draft, action.user);
-      case AUTH_LOGOUT: return logOut(draft);
-      case LOAD_AUTH_ERROR: return loadError(draft, action.error);
+      case SHOW_EDITUSER_LOADING: return showLoading(draft);
+      case HIDE_EDITUSER_LOADING: return hideLoading(draft);
+      case LOAD_EDITUSER_SUCCESS: return loadSuccess(draft, action.user);
+      case LOAD_EDITUSER_ERROR: return loadError(draft, action.error);
+      case CLEAR_EDITUSER_LOADING: return clearLoading(draft);
       default: return state;
     }
   },

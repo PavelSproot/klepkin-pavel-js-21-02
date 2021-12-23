@@ -12,6 +12,7 @@ const initialState: UserState = {
   user: {} as UserResponseType,
   loading: false,
   loaded: false,
+  doAction: false,
   error: EMPTY_STRING,
 };
 

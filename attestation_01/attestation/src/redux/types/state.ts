@@ -11,6 +11,7 @@ export interface State {
   comments: ListCommentState;
   registerUser: UserState;
   authUser: UserState;
+  editUser: UserState;
 }
 
 interface CommonState {
@@ -25,6 +26,7 @@ export interface ListUserShortState extends CommonState {
 
 export interface UserState extends CommonState {
   user: UserResponseType;
+  doAction: boolean;
 }
 
 export interface ListPostShortState extends CommonState {

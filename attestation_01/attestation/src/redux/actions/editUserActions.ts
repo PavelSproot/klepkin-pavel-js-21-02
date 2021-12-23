@@ -1,49 +1,37 @@
 import { Dispatch } from 'redux';
 import { UserActionType } from '../types/actions';
+import { editUser } from '../../api/dummyApi';
 import { UserResponseType } from '../../types/api/dumMyApiResponses';
-import { getUser } from '../../api/dummyApi';
 import {
-  HIDE_USERPROFILE_LOADING,
-  HIDE_USERPROFILE_USERINFO,
-  LOAD_USERPROFILE_ERROR,
-  LOAD_USERPROFILE_SUCCESS,
-  SHOW_USERPROFILE_LOADING,
-  SHOW_USERPROFILE_USERINFO,
-} from '../constants/actions/userProfile';
+  CLEAR_EDITUSER_LOADING,
+  HIDE_EDITUSER_LOADING, LOAD_EDITUSER_ERROR, LOAD_EDITUSER_SUCCESS, SHOW_EDITUSER_LOADING,
+} from '../constants/actions/editUser';
 
 const loadSuccessAction = (user: UserResponseType): UserActionType => ({
-  type: LOAD_USERPROFILE_SUCCESS,
+  type: LOAD_EDITUSER_SUCCESS,
   user,
 });
 
 const loadErrorAction = (error: string): UserActionType => ({
-  type: LOAD_USERPROFILE_ERROR,
+  type: LOAD_EDITUSER_ERROR,
   error,
 });
 
 const showLoadingAction = () : UserActionType => ({
-  type: SHOW_USERPROFILE_LOADING,
+  type: SHOW_EDITUSER_LOADING,
 });
 
 const hideLoadingAction = () : UserActionType => ({
-  type: HIDE_USERPROFILE_LOADING,
+  type: HIDE_EDITUSER_LOADING,
 });
 
-export const showUserEditAction = () => ({
-  type: SHOW_USERPROFILE_USERINFO,
-  doAction: true,
-  loading: false,
+export const clearLoadingAction = () : UserActionType => ({
+  type: CLEAR_EDITUSER_LOADING,
 });
 
-export const hideUserEditAction = () => ({
-  type: HIDE_USERPROFILE_USERINFO,
-  doAction: false,
-  loading: false,
-});
-
-const loadUserProfile = (id: string) => (dispatch: Dispatch) => {
+const EditUser = (user: UserResponseType) => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
-  getUser(id)
+  editUser(user)
     .then((resp) => {
       if (resp.error) {
         return dispatch(loadErrorAction(resp.error));
@@ -54,4 +42,4 @@ const loadUserProfile = (id: string) => (dispatch: Dispatch) => {
     .finally(() => dispatch(hideLoadingAction()));
 };
 
-export default loadUserProfile;
+export default EditUser;

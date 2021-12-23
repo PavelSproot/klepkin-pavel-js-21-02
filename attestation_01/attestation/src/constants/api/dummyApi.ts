@@ -1,6 +1,7 @@
 export const BASE_URL = 'https://dummyapi.io/data/v1/';
 export const METHOD_GET = 'GET';
 export const METHOD_POST = 'POST';
+export const METHOD_PUT = 'PUT';
 
 export const POST_URL = 'post';
 export const COMMENT_URL1 = 'post/';

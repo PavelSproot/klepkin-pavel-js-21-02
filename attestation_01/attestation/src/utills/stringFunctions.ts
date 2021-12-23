@@ -17,3 +17,8 @@ export const makeDateOnlyFromISO = (str: string): string => {
   const date: Date = new Date(Date.parse(str));
   return date.toLocaleString(STRFUNC_LOCALE_RU, { day: 'numeric', month: 'long', year: 'numeric' });
 };
+
+export const makeDigitDateFromISO = (str: string): string => {
+  const date: Date = new Date(Date.parse(str));
+  return date.toLocaleString(STRFUNC_LOCALE_RU, { day: 'numeric', month: 'numeric', year: 'numeric' });
+};

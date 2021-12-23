@@ -10,7 +10,7 @@ import {
   COMMENT_URL1,
   COMMENT_URL2,
   METHOD_POST,
-  CREATE_URL,
+  CREATE_URL, METHOD_PUT,
 } from '../constants/api/dummyApi';
 import { UserResponseType } from '../types/api/dumMyApiResponses';
 
@@ -32,6 +32,19 @@ const doGetRequest = (
 };
 
 export const doPostRequest = (path: string, formParams?: Record<string, any>, method = METHOD_POST) => {
+  const url = new URL(path, BASE_URL);
+  return fetch(url.toString(), {
+    method,
+    headers: new Headers({
+      [APP_ID_FIELD]: APP_ID_VALUE,
+      'Content-Type': 'application/json',
+    }),
+    body: JSON.stringify(formParams),
+  }).then((resp: Response) => resp.json())
+    .catch((error) => (error));
+};
+
+export const doPutRequest = (path: string, formParams?: Record<string, any>, method = METHOD_PUT) => {
   const url = new URL(path, BASE_URL);
   return fetch(url.toString(), {
     method,
@@ -94,5 +107,13 @@ export const getCommentList = (
 export const createUser = (
   user: UserResponseType,
 ) => doPostRequest(`${USER_URL}/${CREATE_URL}`, user);
+
+export const editUser = (
+  user: UserResponseType,
+) => {
+  console.log(user);
+  delete user.email;
+  return doPutRequest(`${USER_URL}/${user.id}`, user);
+};
 
 export default getUserList;

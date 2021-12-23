@@ -4,13 +4,19 @@ import { UserActionType } from '../types/actions';
 import { UserState } from '../types/state';
 import { UserResponseType } from '../../types/api/dumMyApiResponses';
 import {
-  HIDE_USERPROFILE_LOADING, LOAD_USERPROFILE_ERROR, LOAD_USERPROFILE_SUCCESS, SHOW_USERPROFILE_LOADING,
+  HIDE_USERPROFILE_LOADING,
+  HIDE_USERPROFILE_USERINFO,
+  LOAD_USERPROFILE_ERROR,
+  LOAD_USERPROFILE_SUCCESS,
+  SHOW_USERPROFILE_LOADING,
+  SHOW_USERPROFILE_USERINFO,
 } from '../constants/actions/userProfile';
 
 const initialState: UserState = {
   user: {} as UserResponseType,
   loading: false,
   loaded: false,
+  doAction: false,
   error: EMPTY_STRING,
 };
 
@@ -39,6 +45,18 @@ const loadError = (draft: UserState, e?: any) => {
   return draft;
 };
 
+const showInfo = (draft: UserState) => {
+  draft.loading = false;
+  draft.doAction = true;
+  return draft;
+};
+
+const hideInfo = (draft: UserState) => {
+  draft.loading = false;
+  draft.doAction = false;
+  return draft;
+};
+
 export default (state = initialState, action: UserActionType) => produce(
   state,
   (draft: UserState) => {
@@ -47,6 +65,8 @@ export default (state = initialState, action: UserActionType) => produce(
       case HIDE_USERPROFILE_LOADING: return hideLoading(draft);
       case LOAD_USERPROFILE_SUCCESS: return loadSuccess(draft, action.user);
       case LOAD_USERPROFILE_ERROR: return loadError(draft, action.error);
+      case SHOW_USERPROFILE_USERINFO: return showInfo(draft);
+      case HIDE_USERPROFILE_USERINFO: return hideInfo(draft);
       default: return state;
     }
   },

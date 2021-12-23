@@ -62,6 +62,12 @@ $avatarHeight: 300px;
     font-size: 16px;
   }
 
+  &__username-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__username-span {
     font-size: 20px;
     font-weight: bold;
