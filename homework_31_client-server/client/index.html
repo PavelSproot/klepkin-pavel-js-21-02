@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашняя работа 31</title>
+</head>
+<body>
+<div>
+    <label><textarea id="text" disabled style="width: 500px; height: 200px;"></textarea></label>
+</div>
+<div>
+    <button type="button" id="post" disabled>Отправить</button>
+</div>
+</body>
+<script>
+    const url = 'http://127.0.0.1:3000/zfile';
+    const textarea = document.getElementById('text');
+    const button = document.getElementById('post');
+    const sendRequest = (method) => {
+        fetch(url, {
+            method
+        })
+            .then((resp) => resp.json()).then((resp2) => {
+                textarea.value = resp2;
+                textarea.disabled = false;
+                button.disabled = false;
+                return resp2;
+            })
+        .catch((err) => alert("Произошла ошибка при получении данных!" + err))
+    }
+    const sendRequestWith = (method) => {
+        fetch(url, {
+            method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                textval: textarea.value
+            })
+        }).then((resp) => resp.json())
+            .catch((err) => alert("Произошла ошибка при отправке данных!" + err))
+    }
+    button.addEventListener('click', () => sendRequestWith('post'));
+    sendRequest('get');
+</script>
+</html>

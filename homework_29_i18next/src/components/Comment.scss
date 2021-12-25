@@ -1,0 +1,76 @@
+$cardWidth: 275px;
+$cardHeight: 50px;
+$avatarWidth: 30px;
+$avatarHeight: 30px;
+$imgWidth: 260px;
+$imgHeight: 150px;
+
+.comment {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: $cardWidth;
+  min-height: $cardHeight;
+  width: $cardWidth;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-color: beige;
+
+  &__avatar-div {
+    padding: 5px;
+    img {
+      width: $avatarWidth;
+      height: $avatarHeight;
+      border-radius: 50%;
+    }
+  }
+
+  &__main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__info-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__username-span {
+    font-size: 12px;
+    font-weight: bold;
+    justify-content: flex-start;
+  }
+
+  &__date-container {
+    display: flex;
+    font-size: 10px;
+    justify-content: flex-end;
+    padding-right: 5px;
+  }
+
+  &__date-span {
+    text-align: right;
+  }
+
+  &__image-div {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    img {
+      width: $imgWidth;
+      height: $imgHeight;
+      border-radius: 10px;
+    }
+  }
+
+}
+
+.userShort__name {
+
+}

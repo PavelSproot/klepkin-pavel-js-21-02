@@ -1,0 +1,65 @@
+$inputFieldWidth: 300px;
+
+.registration {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  &__title-container {
+    padding-top: 20px;
+  }
+
+  &__input-name {
+    width: $inputFieldWidth;
+  }
+
+  &__input-sername {
+    width: $inputFieldWidth;
+  }
+
+  &__input-email {
+    width: $inputFieldWidth;
+  }
+
+  &__input-phone {
+    width: $inputFieldWidth;
+  }
+
+  &__birthday {
+    width: $inputFieldWidth;
+  }
+
+  &__gender-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__button-container {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  &__button {
+    width: $inputFieldWidth;
+  }
+
+  &__info-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+}
