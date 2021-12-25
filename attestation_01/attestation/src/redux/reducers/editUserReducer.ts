@@ -49,9 +49,9 @@ const clearLoading = (draft: UserState) => {
 
 const updateUserAvatar = (draft: UserState, resp?: UserResponseType) => {
   if (resp) {
+    draft.user.id = resp.id;
     draft.user.picture = resp.picture;
   }
-  console.log(`pic: ${resp?.picture}`);
   return draft;
 };
 

@@ -42,7 +42,7 @@ const avatarUloadSuccessAction = (id: string, img: string): UserActionType => {
   console.log(img);
   return {
     type: LOAD_EDITUSER_AVATAR_SUCCESS,
-    user: { picture: img },
+    user: { id, picture: img },
   };
 };
 

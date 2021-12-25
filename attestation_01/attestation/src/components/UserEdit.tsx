@@ -144,7 +144,7 @@ const UserEdit = function ({
                               name="picture"
                             >
                               <div className="userEdit__avatar-container">
-                                <img className="userEdit__avatar-img" src={editUser.picture} alt={editUser.picture} />
+                                <img className="userEdit__avatar-img" src={editUser.id ? editUser.picture : userProfile.picture} alt={editUser.id ? editUser.picture : userProfile.picture} />
                               </div>
                             </Form.Item>
                             <div className="userEdit__avatar_controls">
