@@ -1,0 +1,34 @@
+$cardWidth: 200px;
+$cardHeight: 200px;
+$imgWidth: 150px;
+$imgHeight: 150px;
+
+.userShort {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: $cardWidth;
+  min-height: $cardHeight;
+  width: $cardWidth;
+  height: $cardHeight;
+  padding: 10px;
+
+  &__avatar {
+    padding: 10px;
+
+    &__username-span {
+      font-size: 16px;
+    }
+
+    img {
+      width: $imgWidth;
+      height: $imgHeight;
+      border-radius: 15px;
+    }
+  }
+}
+
+.userShort__name {
+
+}
