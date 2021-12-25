@@ -3,7 +3,7 @@ import './UserEdit.scss';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
-  ConfigProvider, DatePicker, Form, Input, Radio,
+  ConfigProvider, DatePicker, Divider, Form, Input, Radio,
 } from 'antd';
 import locale from 'antd/lib/locale/ru_RU';
 import loc from 'antd/es/date-picker/locale/ru_RU';
@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
 import {
+  EDIT_FORM_DELETE_AVATAR,
+  EDIT_FORM_UPDATE_AVATAR,
   REG_FORM_ERROR_EMAIL_CONT,
   REG_FORM_ERROR_EMAIL_CONT2,
   REG_FORM_ERROR_EMAIL_REQ,
@@ -41,7 +43,7 @@ import { UserResponseType } from '../types/api/dumMyApiResponses';
 import { State } from '../redux/types/state';
 import Loader from './Loader';
 import { USERPROFILE_URL } from '../constants/api/dummyApi';
-import EditUser, { clearLoadingAction } from '../redux/actions/editUserActions';
+import EditUser, { clearLoadingAction, uploadUserAvatarAction } from '../redux/actions/editUserActions';
 import { makeDigitDateFromISO } from '../utills/stringFunctions';
 
 interface Props {
@@ -54,13 +56,32 @@ interface Props {
   closeCallback: () => void;
   reloadCallback: (id: string) => void;
   clearUserEdit: () => void;
+  uploadUserAvatar: (id: string, file?: Blob) => void;
 }
 
 const UserEdit = function ({
-  editUser, userProfile, loading, loaded, error, doEditUser, closeCallback, reloadCallback, clearUserEdit,
+  editUser, userProfile, loading, loaded, error, doEditUser, closeCallback, reloadCallback, clearUserEdit, uploadUserAvatar,
 }: Props) {
   const navigate = useNavigate();
   const [editUserForm] = Form.useForm();
+  const file = React.createRef<HTMLInputElement>();
+
+  const deleteAvatar = (): void => {
+    //    doEditUser({ id: userProfile.id, picture: '' });
+    //    clearUserEdit();
+    if (userProfile?.id) {
+      uploadUserAvatar(userProfile.id);
+    }
+  };
+
+  const updateAvatar = (): void => {
+    if (userProfile?.id && file.current?.files?.length === 1) {
+      file.current?.files[0].arrayBuffer().then((fileData) => {
+        uploadUserAvatar(userProfile.id as string, new Blob([fileData]));
+      });
+    }
+  };
+
   const handleUserEditForm = (): void => {
     editUserForm
       .validateFields()
@@ -77,6 +98,7 @@ const UserEdit = function ({
         if (fields.birthday) {
           user.dateOfBirth = moment(fields.birthday, 'DD.MM.YYYY').format('YYYY-MM-DD');
         }
+        user.picture = editUser.picture;
         doEditUser(user);
       })
       .catch(() => {
@@ -122,9 +144,29 @@ const UserEdit = function ({
                               name="picture"
                             >
                               <div className="userEdit__avatar-container">
-                                <img className="userEdit__avatar-img" src={userProfile.picture} alt={userProfile.picture} />
+                                <img className="userEdit__avatar-img" src={editUser.picture} alt={editUser.picture} />
                               </div>
                             </Form.Item>
+                            <div className="userEdit__avatar_controls">
+                              <div className="userEdit__hidden">
+                                <input
+                                  ref={file}
+                                  type="file"
+                                  className="userEdit__hidden"
+                                  multiple
+                                  accept="image/*"
+                                  key="avatar_file"
+                                  onChange={updateAvatar}
+                                />
+                              </div>
+                              <Button type="primary" className="userEdit__avatar-upload" onClick={() => file.current?.click()}>
+                                {EDIT_FORM_UPDATE_AVATAR}
+                              </Button>
+                              <Divider type="vertical" className="userEdit__divider" />
+                              <Button type="primary" className="userEdit__avatar-delete" danger onClick={deleteAvatar}>
+                                {EDIT_FORM_DELETE_AVATAR}
+                              </Button>
+                            </div>
                             <Form.Item
                               label={REG_FORM_TITLE_NAME}
                               name="firstName"
@@ -238,5 +280,6 @@ export default connect(
   (dispatch) => ({
     doEditUser: bindActionCreators(EditUser, dispatch),
     clearUserEdit: bindActionCreators(clearLoadingAction, dispatch),
+    uploadUserAvatar: bindActionCreators(uploadUserAvatarAction, dispatch),
   }),
 )(UserEdit);

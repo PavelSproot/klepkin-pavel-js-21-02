@@ -3,9 +3,10 @@ import { UserActionType } from '../types/actions';
 import { editUser } from '../../api/dummyApi';
 import { UserResponseType } from '../../types/api/dumMyApiResponses';
 import {
-  CLEAR_EDITUSER_LOADING,
-  HIDE_EDITUSER_LOADING, LOAD_EDITUSER_ERROR, LOAD_EDITUSER_SUCCESS, SHOW_EDITUSER_LOADING,
+  CLEAR_EDITUSER_LOADING, HIDE_EDITUSER_AVATAR_UPLOAD,
+  HIDE_EDITUSER_LOADING, LOAD_EDITUSER_AVATAR_SUCCESS, LOAD_EDITUSER_ERROR, LOAD_EDITUSER_SUCCESS, SHOW_EDITUSER_AVATAR_UPLOAD, SHOW_EDITUSER_LOADING,
 } from '../constants/actions/editUser';
+import uploadAvatar from '../../api/imgBB';
 
 const loadSuccessAction = (user: UserResponseType): UserActionType => ({
   type: LOAD_EDITUSER_SUCCESS,
@@ -28,6 +29,40 @@ const hideLoadingAction = () : UserActionType => ({
 export const clearLoadingAction = () : UserActionType => ({
   type: CLEAR_EDITUSER_LOADING,
 });
+
+const showAvatarUloadAction = () : UserActionType => ({
+  type: SHOW_EDITUSER_AVATAR_UPLOAD,
+});
+
+const hideAvatarUloadAction = () : UserActionType => ({
+  type: HIDE_EDITUSER_AVATAR_UPLOAD,
+});
+
+const avatarUloadSuccessAction = (id: string, img: string): UserActionType => {
+  console.log(img);
+  return {
+    type: LOAD_EDITUSER_AVATAR_SUCCESS,
+    user: { picture: img },
+  };
+};
+
+export const uploadUserAvatarAction = (id: string, avatar?: Blob) => (dispatch: Dispatch) => {
+  dispatch(showAvatarUloadAction());
+  if (avatar) {
+    uploadAvatar(avatar)
+      .then((resp) => {
+        if (resp.error) {
+          return dispatch(loadErrorAction(resp.error));
+        }
+        return dispatch(avatarUloadSuccessAction(id, resp.data.display_url));
+      })
+      .catch((error) => dispatch(loadErrorAction(error)))
+      .finally(() => dispatch(hideAvatarUloadAction()));
+  } else {
+    dispatch(avatarUloadSuccessAction(id, ''));
+    dispatch(hideAvatarUloadAction());
+  }
+};
 
 const EditUser = (user: UserResponseType) => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());

@@ -32,3 +32,5 @@ export const REG_FORM_ERROR_NOT_ALL = 'Не все обязатальные по
 export const REG_FORM_SUCCESS_CREATION = 'Пользователь создан успешно. Ваш ID: ';
 
 export const EDIT_FORM_EDIT_BUTTON_DESCRIPTION = 'Редактировать';
+export const EDIT_FORM_UPDATE_AVATAR = 'Обновить фотографию';
+export const EDIT_FORM_DELETE_AVATAR = 'Удалить фотографию';

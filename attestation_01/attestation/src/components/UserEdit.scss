@@ -73,4 +73,12 @@ $inputFieldWidth: 200px;
     width: 250px;
     height: 250px;
   }
+
+  &__avatar_controls {
+    padding-bottom: 20px;
+  }
+
+  &__hidden {
+    display: none;
+  }
 }

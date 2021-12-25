@@ -4,8 +4,8 @@ import { UserActionType } from '../types/actions';
 import { UserState } from '../types/state';
 import { UserResponseType } from '../../types/api/dumMyApiResponses';
 import {
-  CLEAR_EDITUSER_LOADING,
-  HIDE_EDITUSER_LOADING, LOAD_EDITUSER_ERROR, LOAD_EDITUSER_SUCCESS, SHOW_EDITUSER_LOADING,
+  CLEAR_EDITUSER_LOADING, HIDE_EDITUSER_AVATAR_UPLOAD,
+  HIDE_EDITUSER_LOADING, LOAD_EDITUSER_AVATAR_SUCCESS, LOAD_EDITUSER_ERROR, LOAD_EDITUSER_SUCCESS, SHOW_EDITUSER_AVATAR_UPLOAD, SHOW_EDITUSER_LOADING,
 } from '../constants/actions/editUser';
 
 const initialState: UserState = {
@@ -47,6 +47,14 @@ const clearLoading = (draft: UserState) => {
   return draft;
 };
 
+const updateUserAvatar = (draft: UserState, resp?: UserResponseType) => {
+  if (resp) {
+    draft.user.picture = resp.picture;
+  }
+  console.log(`pic: ${resp?.picture}`);
+  return draft;
+};
+
 export default (state = initialState, action: UserActionType) => produce(
   state,
   (draft: UserState) => {
@@ -56,6 +64,9 @@ export default (state = initialState, action: UserActionType) => produce(
       case LOAD_EDITUSER_SUCCESS: return loadSuccess(draft, action.user);
       case LOAD_EDITUSER_ERROR: return loadError(draft, action.error);
       case CLEAR_EDITUSER_LOADING: return clearLoading(draft);
+      case SHOW_EDITUSER_AVATAR_UPLOAD: return showLoading(draft);
+      case HIDE_EDITUSER_AVATAR_UPLOAD: return hideLoading(draft);
+      case LOAD_EDITUSER_AVATAR_SUCCESS: return updateUserAvatar(draft, action.user);
       default: return state;
     }
   },
