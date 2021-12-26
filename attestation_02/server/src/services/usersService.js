@@ -5,9 +5,9 @@ const { usersService: messages } = require("../constants/loggerMsg");
 
 class usersService {
     getUserById(req, res) {
-        logger.info(format(messages.GET_USER_BY_ID_PARAMS, JSON.stringify(req.params)));
+        logger.info(format(messages.GET_USER_BY_ID_PARAMS, req.params.id));
         usersRepository
-            .get(req.params.id)
+            .getUser(req.params.id)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.GET_USER_BY_ID_SUCCESS, 200, result));
@@ -20,9 +20,9 @@ class usersService {
     }
 
     getUserList(req, res) {
-        logger.info(format(messages.GET_USER_LIST_PARAMS, JSON.stringify(req.params)));
+        logger.info(format(messages.GET_USER_LIST_PARAMS, req.params.page, req.params.limit));
         usersRepository
-            .getList(req.params.page, req.params.limit)
+            .getUserList(req.params.page, req.params.limit)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.GET_USER_LIST_SUCCESS, 200, result));
@@ -45,7 +45,7 @@ class usersService {
         );
 
         usersRepository
-            .getPostList(req.params.id, req.params.page, req.params.limit)
+            .getUserPostList(req.params.id, req.params.page, req.params.limit)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.GET_USER_POST_LIST_SUCCESS, 200, result));
@@ -62,7 +62,7 @@ class usersService {
             format(messages.CREATE_USER_PARAMS, JSON.stringify(req.body))
         );
         usersRepository
-            .create(req.body)
+            .createUser(req.body)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.CREATE_USER_SUCCESS, 200, result));
@@ -79,7 +79,7 @@ class usersService {
             format(messages.UPDATE_USER_PARAMS, req.params.id, JSON.stringify(req.body))
         );
         usersRepository
-            .update(req.params.id, req.body)
+            .updateUser(req.params.id, req.body)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.UPDATE_USER_SUCCESS, 200, result));

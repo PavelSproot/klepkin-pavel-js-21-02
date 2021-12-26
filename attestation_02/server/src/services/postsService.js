@@ -7,7 +7,7 @@ class postsService {
     getPostById(req, res) {
         logger.info(format(messages.GET_POST_BY_ID_PARAMS, req.params.id));
         postsRepository
-            .get(req.params.id)
+            .getPost(req.params.id)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.GET_POST_BY_ID_SUCCESS, 200, result));
@@ -24,7 +24,7 @@ class postsService {
             format(messages.GET_POST_LIST_PARAMS, req.params.page, req.params.limit)
         );
         postsRepository
-            .getList(req.params.page, req.params.limit)
+            .getPostList(req.params.page, req.params.limit)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.GET_POST_LIST_SUCCESS, 200, result));
@@ -46,7 +46,7 @@ class postsService {
             )
         );
         postsRepository
-            .getCommentList(req.params.id, req.params.page, req.params.limit)
+            .getPostCommentList(req.params.id, req.params.page, req.params.limit)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.GET_POST_COMMENTS_SUCCESS, 200, result));
