@@ -75,7 +75,8 @@ const UserEdit = function ({
           id: userProfile.id,
         };
         if (fields.birthday) {
-          user.dateOfBirth = { date: moment(fields.birthday, dateFormat).format('YYYY-MM-DD'), time: '00:00' };
+          const htm: HTMLInputElement = document.getElementById('birthday-field') as HTMLInputElement;
+          user.dateOfBirth = { date: moment(htm.value, dateFormat).format('YYYY-MM-DD'), time: '00:00' };
         }
         user.picture = editUser.picture;
         doEditUser(user);
@@ -113,7 +114,7 @@ const UserEdit = function ({
                               firstName: userProfile.firstName,
                               serName: userProfile.lastName,
                               gender: userProfile.gender,
-                              birthday: moment(userProfile.dateOfBirth && userProfile.dateOfBirth.date).format(dateFormat),
+                              birthday: moment(userProfile.dateOfBirth && userProfile.dateOfBirth.date, 'YYYY-MM-DD').format(dateFormat),
                               email: userProfile.email,
                               phone: userProfile.phone,
                               picture: userProfile.picture,
@@ -193,7 +194,7 @@ const UserEdit = function ({
                             <Form.Item label={t('title_birthday')} name="birthday">
                               <div className="userEdit__birthday-container">
                                 <ConfigProvider locale={locale}>
-                                  <DatePicker className="userEdit__birthday" locale={loc} format={dateFormat} placeholder={t('ph_birthday')} defaultValue={(moment(userProfile.dateOfBirth && userProfile.dateOfBirth.date))} />
+                                  <DatePicker id="birthday-field" className="userEdit__birthday" locale={loc} format={dateFormat} placeholder={t('ph_birthday')} defaultValue={(moment(userProfile.dateOfBirth && userProfile.dateOfBirth.date, 'YYYY-MM-DD'))} />
                                 </ConfigProvider>
                               </div>
                             </Form.Item>

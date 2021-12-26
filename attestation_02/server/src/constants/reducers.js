@@ -22,5 +22,5 @@ module.exports = {
     ],
     userDates: ["dateOfBirth", "registerDate"],
     userRequired: ["lastName", "firstName", "email"],
-    imgUrl: ["url"],
+    imgUrl: ["display_url"],
 };

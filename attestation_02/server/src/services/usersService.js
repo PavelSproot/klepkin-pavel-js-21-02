@@ -79,7 +79,7 @@ class usersService {
             format(messages.UPDATE_USER_PARAMS, req.params.id, JSON.stringify(req.body))
         );
         usersRepository
-            .updateUser(req.params.id, req.body)
+            .updateUser(req.body)
             .then((response) => {
                 const result = JSON.stringify(response);
                 logger.info(format(messages.UPDATE_USER_SUCCESS, 200, result));
@@ -87,6 +87,23 @@ class usersService {
             })
             .catch((error) => {
                 logger.error(format(messages.UPDATE_USER_ERROR, 520, error));
+                res.status(520).json(error);
+            });
+    }
+
+    uploadAvatar(req, res) {
+        logger.info(
+            format(messages.UPLOAD_AVATAR_PARAMS, req.file.originalname)
+        );
+        usersRepository
+            .uploadUserAvatar(req.file)
+            .then((response) => {
+                const result = JSON.stringify(response);
+                logger.info(format(messages.UPLOAD_AVATAR_SUCCESS, 200, result));
+                res.status(200).send(result);
+            })
+            .catch((error) => {
+                logger.error(format(messages.UPLOAD_AVATAR_ERROR, 520, error));
                 res.status(520).json(error);
             });
     }

@@ -107,7 +107,6 @@ class DummyApi {
   editUser = (
       user,
   ) => {
-    delete user.email;
     return this.doPutRequest(`${dummyApi.USER_URL}/${user.id}`, user);
   };
 }

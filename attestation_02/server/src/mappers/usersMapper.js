@@ -29,6 +29,16 @@ class UsersMapper {
             dateOfBirth: moment(user.dateOfBirth.date).toISOString()
         };
     }
+
+    prepareForDummyEdit(user) {
+        const res = {
+            ...user,
+            dateOfBirth: moment(user.dateOfBirth.date).toISOString()
+        };
+        delete res.email;
+        delete res.registerDate;
+        return res;
+    }
 }
 
 module.exports = new UsersMapper();

@@ -6,7 +6,7 @@ import {
   COMMENT_URL1,
   COMMENT_URL2,
   METHOD_POST,
-  CREATE_URL, METHOD_PUT,
+  CREATE_URL, METHOD_PUT, UPLOAD_AVATAR_URL,
 } from '../constants/api/serverApi';
 import { UserResponseType } from '../types/api/serverApiResponses';
 
@@ -87,13 +87,26 @@ export const getCommentList = (
 
 export const createUser = (
   user: UserResponseType,
-) => doPostRequest(`${USER_URL}/${CREATE_URL}`, user);
+) => doPostRequest(`${USER_URL}${CREATE_URL}`, user);
 
 export const editUser = (
   user: UserResponseType,
 ) => {
   delete user.email;
-  return doPutRequest(`${USER_URL}/${user.id}`, user);
+  return doPutRequest(`${USER_URL}${user.id}`, user);
+};
+
+export const uploadAvatar = (
+  file: Blob,
+) => {
+  const formData = new FormData();
+  formData.set('image', file);
+  return fetch(BASE_URL.concat(USER_URL, UPLOAD_AVATAR_URL), {
+    method: METHOD_PUT,
+    body: formData,
+  })
+    .then((response) => response.json())
+    .catch((error) => (error));
 };
 
 export default getUserList;

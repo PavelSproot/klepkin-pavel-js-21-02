@@ -1,12 +1,11 @@
 import { Dispatch } from 'redux';
 import { UserActionType } from '../types/actions';
-import { editUser } from '../../api/serverApi';
+import { editUser, uploadAvatar } from '../../api/serverApi';
 import { UserResponseType } from '../../types/api/serverApiResponses';
 import {
   CLEAR_EDITUSER_LOADING, HIDE_EDITUSER_AVATAR_UPLOAD,
   HIDE_EDITUSER_LOADING, LOAD_EDITUSER_AVATAR_SUCCESS, LOAD_EDITUSER_ERROR, LOAD_EDITUSER_SUCCESS, SHOW_EDITUSER_AVATAR_UPLOAD, SHOW_EDITUSER_LOADING,
 } from '../constants/actions/editUser';
-import uploadAvatar from '../../api/imgBB';
 
 const loadSuccessAction = (user: UserResponseType): UserActionType => ({
   type: LOAD_EDITUSER_SUCCESS,
@@ -51,7 +50,7 @@ export const uploadUserAvatarAction = (id: string, avatar?: Blob) => (dispatch: 
         if (resp.error) {
           return dispatch(loadErrorAction(resp.error));
         }
-        return dispatch(avatarUloadSuccessAction(id, resp.data.display_url));
+        return dispatch(avatarUloadSuccessAction(id, resp.display_url));
       })
       .catch((error) => dispatch(loadErrorAction(error)))
       .finally(() => dispatch(hideAvatarUloadAction()));

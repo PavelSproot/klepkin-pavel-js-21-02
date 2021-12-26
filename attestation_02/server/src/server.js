@@ -4,10 +4,11 @@ const router = require("./routes/index");
 const logger = require("./logger");
 const context = require("request-context");
 const { v4: generateUUID } = require("uuid");
+const multer = require("multer");
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ extended: true }), multer().single("image"));
 
 app.use(context.middleware("request"));
 app.use((req, res, next) => {
