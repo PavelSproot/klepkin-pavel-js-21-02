@@ -1,0 +1,17 @@
+.hint-wrapped-element {
+  position: relative;
+  &:hover {
+    cursor: help;
+  }
+}
+
+.hint-wrapped-element__hint {
+  position: absolute;
+  top: -17px;
+  font-size: smaller;
+  background-color: khaki;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

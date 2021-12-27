@@ -1,0 +1,104 @@
+.header {
+  $baseHeaderSize: 70px;
+  $headerFontSize: 14px;
+  $headerFontSizeSmall: 10px;
+  $iconSize: 20px;
+  $iconSizeSmall: 15px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height: $baseHeaderSize + 10;
+  padding: 5px;
+
+   &__logo-container img {
+    width: $baseHeaderSize;
+    heaight: $baseHeaderSize;
+     border-radius: 50%;
+  }
+
+  &__sitename-container {
+    font-size: 18px;
+    width: 110px;
+    text-align: center;
+
+  }
+
+  &__central-part, &__left-part, &__right-part {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 499px) {
+      flex-direction: column;
+    }
+  }
+
+  &__left-part {
+    @media (max-width: 749px) {
+      display: none;
+    }
+  }
+
+  &__users-container, &__posts-container {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: $headerFontSize;
+  }
+
+  .header__users-title, .header__posts-title {
+    padding-left: 5px;
+  }
+
+  &__login-container, &__register-container {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: $headerFontSize;
+  }
+
+  &__div-right-border {
+    border-right: 1px solid grey;
+    @media (max-width: 499px) {
+      border-right: unset;
+    }
+  }
+
+  &__username-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__avatar-img {
+    border: 1px solid black;
+    border-radius: 50%;
+    weidth: 30px;
+    height: 30px;
+  }
+
+  &__username {
+    padding-left: 5px;
+  }
+
+  &__logout-link {
+    padding: 0;
+  }
+
+  &__icons {
+    font-size: $iconSize;
+    @media (max-width: 599px) {
+      font-size: $iconSizeSmall;
+    }
+  }
+
+}
+
+

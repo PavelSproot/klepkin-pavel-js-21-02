@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
+  },
+  "author": "P.Klepkin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "form-data": "^4.0.0",
+    "moment": "^2.29.1",
+    "multer": "^1.4.4",
+    "node-fetch": "^3.1.0",
+    "request-context": "^2.0.0",
+    "simple-node-logger": "^21.8.12",
+    "string-format": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  }
+}
