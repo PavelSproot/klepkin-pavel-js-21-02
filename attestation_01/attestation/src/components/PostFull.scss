@@ -1,0 +1,60 @@
+$cardWidth: 580px;
+$cardHeight: 580px;
+$avatarWidth: 40px;
+$avatarHeight: 40px;
+$imgWidth: 560px;
+$imgHeight: 300px;
+
+.postFull {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: $cardWidth;
+  min-height: $cardHeight;
+  width: $cardWidth;
+  padding: 10px;
+
+  &__info-container {
+    display: flex;
+    justify-content: space-between;
+    width: $imgWidth;
+  }
+
+  &__owner-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar-div {
+    padding: 5px;
+    img {
+      width: $avatarWidth;
+      height: $avatarHeight;
+      border-radius: 50%;
+    }
+  }
+
+    &__username-span {
+    font-size: 16px;
+  }
+
+  &__date-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  &__image-div {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    img {
+      width: $imgWidth;
+      height: $imgHeight;
+      border-radius: 10px;
+    }
+  }
+
+}

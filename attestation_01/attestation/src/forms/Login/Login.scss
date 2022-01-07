@@ -1,0 +1,43 @@
+$inputFieldWidth: 300px;
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  &__title-container {
+    padding-top: 20px;
+  }
+
+  &__input-id {
+    width: $inputFieldWidth;
+  }
+
+  &__button-container {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  &__button {
+    width: $inputFieldWidth;
+  }
+
+  &__info-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+}
